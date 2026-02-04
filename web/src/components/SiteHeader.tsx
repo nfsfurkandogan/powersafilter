@@ -75,6 +75,7 @@ export default function SiteHeader() {
     if (typeof document === "undefined") return;
     const isRtl = locale === "ar";
     document.documentElement.dir = isRtl ? "rtl" : "ltr";
+    document.documentElement.lang = locale === "tr" ? "tr" : locale;
     document.body.classList.toggle("rtl", isRtl);
   }, [locale]);
 

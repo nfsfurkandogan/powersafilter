@@ -36,8 +36,8 @@ function countBy(items: Product[], key: keyof Product) {
   return Array.from(map.entries()).sort((a, b) => b[1] - a[1]);
 }
 
-export default function CatalogPageAr() {
-  const base = "/ar";
+export default function CatalogPageKa() {
+  const base = "/ka";
   const link = (path: string) => `${base}${path}`;
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -95,31 +95,31 @@ export default function CatalogPageAr() {
   const maxBrand = topBrands[0]?.[1] || 1;
 
   return (
-    <div className="rtl" dir="rtl">
+    <>
       <section className="catalog-hero">
         <div className="container catalog-hero-inner">
           <div>
-            <span className="eyebrow">مركز الكتالوج</span>
-            <h1>إدارة بيانات الكتالوج من مكان واحد.</h1>
+            <span className="eyebrow">კატალოგის ცენტრი</span>
+            <h1>კატალოგის მონაცემების მართვა ერთ სივრცეში.</h1>
             <p>
-              هنا ملخص لمحفظة المنتجات وتوزيع المُصنِّعين والفئات. للبحث المتقدم استخدم
-              صفحة البحث عن المنتجات.
+              აქ ნახავთ პროდუქტის პორტფელს, მწარმოებლებს და კატეგორიების განაწილებას.
+              დეტალური ძიებისთვის გამოიყენეთ პროდუქტის ძიების გვერდი.
             </p>
             <div className="hero-actions">
               <a className="btn btn-primary" href={link("/urun-ara")}>
-                بحث المنتجات
+                პროდუქტის ძიება
               </a>
               <a className="btn btn-ghost" href={link("/hizmetler")}>
-                عرض الخدمات
+                სერვისები
               </a>
             </div>
           </div>
           <div className="catalog-hero-card">
-            <strong>حالة الكتالوج</strong>
-            <p>إجمالي المنتجات: {totals.total.toLocaleString("tr-TR")}</p>
-            <p>عدد المُصنِّعين: {totals.brands.toLocaleString("tr-TR")}</p>
-            <p>الفئة (Kod-3): {totals.kod3.toLocaleString("tr-TR")}</p>
-            <p>النوع (Kod-4): {totals.kod4.toLocaleString("tr-TR")}</p>
+            <strong>კატალოგის სტატუსი</strong>
+            <p>ჯამური პროდუქტი: {totals.total.toLocaleString("tr-TR")}</p>
+            <p>მწარმოებლები: {totals.brands.toLocaleString("tr-TR")}</p>
+            <p>კატეგორია (Kod-3): {totals.kod3.toLocaleString("tr-TR")}</p>
+            <p>ტიპი (Kod-4): {totals.kod4.toLocaleString("tr-TR")}</p>
           </div>
         </div>
       </section>
@@ -128,19 +128,19 @@ export default function CatalogPageAr() {
         <div className="container">
           <div className="section-head">
             <div>
-              <h2>تحليل الكتالوج</h2>
-              <p>أبرز الفئات وتوزيع المُصنِّعين.</p>
+              <h2>კატალოგის ანალიზი</h2>
+              <p>პოპულარული კატეგორიები და მწარმოებლების განაწილება.</p>
             </div>
-            <div className="section-badge">تحليل</div>
+            <div className="section-badge">ანალიზი</div>
           </div>
           <div className="catalog-panels">
             <div className="catalog-panel">
-              <h3>أبرز الفئات</h3>
+              <h3>პოპულარული კატეგორიები</h3>
               {topCategories.map(([label, count]) => (
                 <div key={label} className="catalog-item">
                   <div>
                     <strong>{label}</strong>
-                    <span>{count.toLocaleString("tr-TR")} منتج</span>
+                    <span>{count.toLocaleString("tr-TR")} პროდუქტი</span>
                   </div>
                   <div className="catalog-bar">
                     <span style={{ width: `${(count / maxCategory) * 100}%` }} />
@@ -149,12 +149,12 @@ export default function CatalogPageAr() {
               ))}
             </div>
             <div className="catalog-panel">
-              <h3>أبرز المُصنِّعين</h3>
+              <h3>პოპულარული მწარმოებლები</h3>
               {topBrands.map(([label, count]) => (
                 <div key={label} className="catalog-item">
                   <div>
                     <strong>{label}</strong>
-                    <span>{count.toLocaleString("tr-TR")} منتج</span>
+                    <span>{count.toLocaleString("tr-TR")} პროდუქტი</span>
                   </div>
                   <div className="catalog-bar">
                     <span style={{ width: `${(count / maxBrand) * 100}%` }} />
@@ -170,47 +170,47 @@ export default function CatalogPageAr() {
         <div className="container">
           <div className="section-head">
             <div>
-              <h2>معاينة بحث سريع</h2>
-              <p>شاهد بعض النتائج فوراً.</p>
+              <h2>სწრაფი წინასწარი შედეგი</h2>
+              <p>რამდენიმე შედეგი ერთდროულად.</p>
             </div>
-            <div className="section-badge">معاينة</div>
+            <div className="section-badge">პრევიუ</div>
           </div>
           <div className="catalog-preview-card">
             <div className="input-group wide">
-              <label htmlFor="catalog-query-ar">المنتج / المخزون / المُصنِّع</label>
+              <label htmlFor="catalog-query-ka">პროდუქტი / საწყობი / მწარმოებელი</label>
               <input
-                id="catalog-query-ar"
+                id="catalog-query-ka"
                 type="text"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="مثال: WK735، P502478، فلتر وقود..."
+                placeholder="მაგ: WK735, P502478, საწვავის ფილტრი..."
               />
             </div>
             {loading ? (
-              <div className="result-empty">جاري تحميل الكتالوج...</div>
+              <div className="result-empty">კატალოგი იტვირთება...</div>
             ) : results.length === 0 ? (
-              <div className="result-empty">أدخل حرفين على الأقل للبحث.</div>
+              <div className="result-empty">გთხოვთ შეიყვანოთ მინიმუმ 2 სიმბოლო.</div>
             ) : (
               <div className="preview-list">
                 {results.map((item, index) => (
                   <div key={`${item.stokKodu}-${index}`} className="preview-item">
                     <div>
-                      <strong>{item.stokIsmi || "منتج"}</strong>
-                      <span>المخزون: {item.stokKodu || "-"}</span>
+                      <strong>{item.stokIsmi || "პროდუქტი"}</strong>
+                      <span>საწყობი: {item.stokKodu || "-"}</span>
                     </div>
-                    <a href={link("/urun-ara")}>عرض التفاصيل</a>
+                    <a href={link("/urun-ara")}>დეტალურად</a>
                   </div>
                 ))}
               </div>
             )}
             <div className="preview-actions">
               <a className="btn btn-primary" href={link("/urun-ara")}>
-                صفحة بحث المنتجات
+                პროდუქტის ძიების გვერდი
               </a>
             </div>
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }

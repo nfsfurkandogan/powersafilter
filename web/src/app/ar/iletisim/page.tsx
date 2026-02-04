@@ -5,26 +5,26 @@ export default function ContactPageAr() {
         <div className="container page-hero-inner">
           <div>
             <span className="eyebrow">اتصل بنا</span>
-            <h1>دعنا نتواصل معك سريعًا.</h1>
+            <h1>لنبدأ التواصل بسرعة.</h1>
             <p>
-              يمكنك التواصل بشأن الفروع والمنتجات والشراكات. املأ النموذج وسنعاودك
-              بأقرب وقت.
+              تواصل معنا لطلبات الفروع أو المنتجات أو الشراكات. املأ النموذج وسنرد
+              عليك في أقرب وقت ممكن.
             </p>
           </div>
           <div className="page-hero-card">
             <div>
-              <strong>المركز</strong>
-              <p>العنوان: ياكوتيه، أرضروم</p>
+              <strong>المكتب الرئيسي</strong>
+              <p>العنوان: ياكوتية، أرضروم</p>
               <p>الهاتف: +90 442 000 00 00</p>
               <p>البريد: info@powersafilter.com</p>
             </div>
             <div>
               <strong>استجابة سريعة</strong>
-              <p>هدف الرد الأول خلال 24 ساعة.</p>
+              <p>هدفنا الرد الأول خلال 24 ساعة.</p>
             </div>
             <div>
               <strong>دعم مؤسسي</strong>
-              <p>نمنح طلبات الفروع والوكلاء أولوية.</p>
+              <p>نعطي أولوية لطلبات الفروع والوكلاء.</p>
             </div>
           </div>
         </div>
@@ -35,7 +35,7 @@ export default function ContactPageAr() {
           <div className="contact-info">
             <div className="contact-card">
               <h3>المكتب الرئيسي</h3>
-              <p>العنوان: ياكوتيه، أرضروم</p>
+              <p>العنوان: ياكوتية، أرضروم</p>
               <p>الهاتف: +90 442 000 00 00</p>
               <p>البريد: info@powersafilter.com</p>
             </div>
@@ -56,7 +56,7 @@ export default function ContactPageAr() {
           <form className="contact-form">
             <div className="input-group">
               <label htmlFor="name">الاسم الكامل</label>
-              <input id="name" name="name" type="text" placeholder="الاسم الكامل" />
+              <input id="name" name="name" type="text" placeholder="اسمك" />
             </div>
             <div className="input-group">
               <label htmlFor="company">الشركة</label>
@@ -64,12 +64,7 @@ export default function ContactPageAr() {
             </div>
             <div className="input-group">
               <label htmlFor="email">البريد الإلكتروني</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="example@company.com"
-              />
+              <input id="email" name="email" type="email" placeholder="name@company.com" />
             </div>
             <div className="input-group">
               <label htmlFor="phone">الهاتف</label>
@@ -81,7 +76,7 @@ export default function ContactPageAr() {
                 id="message"
                 name="message"
                 rows={5}
-                placeholder="شارك طلبك باختصار"
+                placeholder="اشرح طلبك باختصار"
               />
             </div>
             <div className="contact-actions">

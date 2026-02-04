@@ -14,6 +14,24 @@ const labels = {
     close: "Kapat",
     mascotAlt: "Powersa maskotu",
   },
+  en: {
+    eyebrow: "Powersa Filter",
+    title: "Welcome to our site!",
+    body: "Our mascot is here to help. Find the right filter in seconds with catalog search.",
+    primary: "Go to Catalog",
+    home: "Home",
+    close: "Close",
+    mascotAlt: "Powersa mascot",
+  },
+  ka: {
+    eyebrow: "Powersa Filter",
+    title: "კეთილი იყოს თქვენი მობრძანება!",
+    body: "ჩვენი მასკოტი დაგეხმარებათ. კატალოგის ძიებით სწორ ფილტრს წამებში იპოვით.",
+    primary: "კატალოგზე გადასვლა",
+    home: "მთავარი",
+    close: "დახურვა",
+    mascotAlt: "Powersa მასკოტი",
+  },
   ar: {
     eyebrow: "Powersa Filter",
     title: "مرحبًا بكم في موقعنا!",
@@ -26,7 +44,10 @@ const labels = {
 } as const;
 
 function getLocale(pathname: string) {
-  return pathname === "/ar" || pathname.startsWith("/ar/") ? "ar" : "tr";
+  if (pathname === "/en" || pathname.startsWith("/en/")) return "en";
+  if (pathname === "/ka" || pathname.startsWith("/ka/")) return "ka";
+  if (pathname === "/ar" || pathname.startsWith("/ar/")) return "ar";
+  return "tr";
 }
 
 export default function WelcomeModal() {

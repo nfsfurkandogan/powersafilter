@@ -1,6 +1,10 @@
 import Image from "next/image";
+import WelcomeModal from "@/components/WelcomeModal";
 
 export default function HomeEn() {
+  const base = "/en";
+  const link = (path: string) => `${base}${path}`;
+
   return (
     <>
       <section className="hero-banner">
@@ -13,10 +17,10 @@ export default function HomeEn() {
               category filters.
             </p>
             <div className="hero-actions">
-              <a className="btn btn-primary" href="/urun-ara">
+              <a className="btn btn-primary" href={link("/urun-ara")}>
                 Catalog Search
               </a>
-              <a className="btn btn-ghost" href="/hizmetler">
+              <a className="btn btn-ghost" href={link("/hizmetler")}>
                 View Services
               </a>
             </div>
@@ -119,7 +123,7 @@ export default function HomeEn() {
             </div>
             <div className="home-search-panel">
               <div className="home-search-actions">
-                <a className="btn btn-primary" href="/urun-ara">
+                <a className="btn btn-primary" href={link("/urun-ara")}>
                   Go to Catalog Search
                 </a>
               </div>
@@ -127,6 +131,8 @@ export default function HomeEn() {
           </div>
         </div>
       </section>
+
+      <WelcomeModal />
 
       <section className="section services-section">
         <div className="container">
@@ -148,7 +154,7 @@ export default function HomeEn() {
                 <div className="service-body">
                   <h3>Oil Filter</h3>
                   <p>High filtration for engine protection and performance.</p>
-                  <a className="text-link" href="/hizmetler#yag">
+                  <a className="text-link" href={link("/hizmetler#yag")}>
                     View details
                   </a>
                 </div>
@@ -164,7 +170,7 @@ export default function HomeEn() {
                 <div className="service-body">
                   <h3>Air Filter</h3>
                   <p>Clean airflow for efficient and healthy operation.</p>
-                  <a className="text-link" href="/hizmetler#hava">
+                  <a className="text-link" href={link("/hizmetler#hava")}>
                     View details
                   </a>
                 </div>
@@ -180,7 +186,7 @@ export default function HomeEn() {
                 <div className="service-body">
                   <h3>Fuel Filter</h3>
                   <p>Maximum cleanliness in fuel lines.</p>
-                  <a className="text-link" href="/hizmetler#yakit">
+                  <a className="text-link" href={link("/hizmetler#yakit")}>
                     View details
                   </a>
                 </div>
@@ -196,7 +202,7 @@ export default function HomeEn() {
                 <div className="service-body">
                   <h3>Cabin Filter</h3>
                   <p>Effective filtration for cabin air quality.</p>
-                  <a className="text-link" href="/hizmetler#polen">
+                  <a className="text-link" href={link("/hizmetler#polen")}>
                     View details
                   </a>
                 </div>
@@ -212,7 +218,7 @@ export default function HomeEn() {
                 <div className="service-body">
                   <h3>Hydraulic Filter</h3>
                   <p>Strong protection for heavy-duty conditions.</p>
-                  <a className="text-link" href="/hizmetler#hidrolik">
+                  <a className="text-link" href={link("/hizmetler#hidrolik")}>
                     View details
                   </a>
                 </div>
@@ -239,7 +245,7 @@ export default function HomeEn() {
                 coverage.
               </p>
             </div>
-            <a className="btn btn-primary" href="/kalite">
+            <a className="btn btn-primary" href={link("/kalite")}>
               Go to Quality Page
             </a>
           </div>

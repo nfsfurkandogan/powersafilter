@@ -1,6 +1,10 @@
 import Image from "next/image";
+import WelcomeModal from "@/components/WelcomeModal";
 
 export default function HomeKa() {
+  const base = "/ka";
+  const link = (path: string) => `${base}${path}`;
+
   return (
     <>
       <section className="hero-banner">
@@ -13,10 +17,10 @@ export default function HomeKa() {
               წამებში იპოვეთ.
             </p>
             <div className="hero-actions">
-              <a className="btn btn-primary" href="/urun-ara">
+              <a className="btn btn-primary" href={link("/urun-ara")}>
                 კატალოგის ძიება
               </a>
-              <a className="btn btn-ghost" href="/hizmetler">
+              <a className="btn btn-ghost" href={link("/hizmetler")}>
                 სერვისების ნახვა
               </a>
             </div>
@@ -119,7 +123,7 @@ export default function HomeKa() {
             </div>
             <div className="home-search-panel">
               <div className="home-search-actions">
-                <a className="btn btn-primary" href="/urun-ara">
+                <a className="btn btn-primary" href={link("/urun-ara")}>
                   კატალოგის ძიების გვერდი
                 </a>
               </div>
@@ -127,6 +131,8 @@ export default function HomeKa() {
           </div>
         </div>
       </section>
+
+      <WelcomeModal />
 
       <section className="section services-section">
         <div className="container">
@@ -148,7 +154,7 @@ export default function HomeKa() {
                 <div className="service-body">
                   <h3>ზეთის ფილტრი</h3>
                   <p>ძრავის დაცვა და მაღალი ფილტრაცია.</p>
-                  <a className="text-link" href="/hizmetler#yag">
+                  <a className="text-link" href={link("/hizmetler#yag")}>
                     დეტალები
                   </a>
                 </div>
@@ -164,7 +170,7 @@ export default function HomeKa() {
                 <div className="service-body">
                   <h3>ჰაერის ფილტრი</h3>
                   <p>სუფთა ჰაერის ნაკადი ეფექტური მუშაობისთვის.</p>
-                  <a className="text-link" href="/hizmetler#hava">
+                  <a className="text-link" href={link("/hizmetler#hava")}>
                     დეტალები
                   </a>
                 </div>
@@ -180,7 +186,7 @@ export default function HomeKa() {
                 <div className="service-body">
                   <h3>საწვავის ფილტრი</h3>
                   <p>საწვავის ხაზებში მაქსიმალური სისუფთავე.</p>
-                  <a className="text-link" href="/hizmetler#yakit">
+                  <a className="text-link" href={link("/hizmetler#yakit")}>
                     დეტალები
                   </a>
                 </div>
@@ -196,7 +202,7 @@ export default function HomeKa() {
                 <div className="service-body">
                   <h3>კაბინის ფილტრი</h3>
                   <p>კაბინის ჰაერის ხარისხის ეფექტური ფილტრაცია.</p>
-                  <a className="text-link" href="/hizmetler#polen">
+                  <a className="text-link" href={link("/hizmetler#polen")}>
                     დეტალები
                   </a>
                 </div>
@@ -212,7 +218,7 @@ export default function HomeKa() {
                 <div className="service-body">
                   <h3>ჰიდრავლიკის ფილტრი</h3>
                   <p>ძლიერი დაცვა მძიმე პირობებში.</p>
-                  <a className="text-link" href="/hizmetler#hidrolik">
+                  <a className="text-link" href={link("/hizmetler#hidrolik")}>
                     დეტალები
                   </a>
                 </div>
@@ -238,7 +244,7 @@ export default function HomeKa() {
                 გაიცანით ხარისხის გვერდი — გამძლეობა, მაღალი ეფექტურობა და ფართო მოცვა.
               </p>
             </div>
-            <a className="btn btn-primary" href="/kalite">
+            <a className="btn btn-primary" href={link("/kalite")}>
               ხარისხის გვერდზე გადასვლა
             </a>
           </div>

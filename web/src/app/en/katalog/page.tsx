@@ -36,8 +36,8 @@ function countBy(items: Product[], key: keyof Product) {
   return Array.from(map.entries()).sort((a, b) => b[1] - a[1]);
 }
 
-export default function CatalogPageAr() {
-  const base = "/ar";
+export default function CatalogPageEn() {
+  const base = "/en";
   const link = (path: string) => `${base}${path}`;
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -95,31 +95,31 @@ export default function CatalogPageAr() {
   const maxBrand = topBrands[0]?.[1] || 1;
 
   return (
-    <div className="rtl" dir="rtl">
+    <>
       <section className="catalog-hero">
         <div className="container catalog-hero-inner">
           <div>
-            <span className="eyebrow">مركز الكتالوج</span>
-            <h1>إدارة بيانات الكتالوج من مكان واحد.</h1>
+            <span className="eyebrow">Catalog Center</span>
+            <h1>Manage catalog data from a single hub.</h1>
             <p>
-              هنا ملخص لمحفظة المنتجات وتوزيع المُصنِّعين والفئات. للبحث المتقدم استخدم
-              صفحة البحث عن المنتجات.
+              Product portfolio, manufacturer, and category distribution are summarized
+              here. Use the product search page for detailed filtering.
             </p>
             <div className="hero-actions">
               <a className="btn btn-primary" href={link("/urun-ara")}>
-                بحث المنتجات
+                Product Search
               </a>
               <a className="btn btn-ghost" href={link("/hizmetler")}>
-                عرض الخدمات
+                View Services
               </a>
             </div>
           </div>
           <div className="catalog-hero-card">
-            <strong>حالة الكتالوج</strong>
-            <p>إجمالي المنتجات: {totals.total.toLocaleString("tr-TR")}</p>
-            <p>عدد المُصنِّعين: {totals.brands.toLocaleString("tr-TR")}</p>
-            <p>الفئة (Kod-3): {totals.kod3.toLocaleString("tr-TR")}</p>
-            <p>النوع (Kod-4): {totals.kod4.toLocaleString("tr-TR")}</p>
+            <strong>Catalog Status</strong>
+            <p>Total products: {totals.total.toLocaleString("tr-TR")}</p>
+            <p>Manufacturers: {totals.brands.toLocaleString("tr-TR")}</p>
+            <p>Category (Kod-3): {totals.kod3.toLocaleString("tr-TR")}</p>
+            <p>Type (Kod-4): {totals.kod4.toLocaleString("tr-TR")}</p>
           </div>
         </div>
       </section>
@@ -128,19 +128,19 @@ export default function CatalogPageAr() {
         <div className="container">
           <div className="section-head">
             <div>
-              <h2>تحليل الكتالوج</h2>
-              <p>أبرز الفئات وتوزيع المُصنِّعين.</p>
+              <h2>Catalog Analytics</h2>
+              <p>Top categories and manufacturer distribution.</p>
             </div>
-            <div className="section-badge">تحليل</div>
+            <div className="section-badge">Analytics</div>
           </div>
           <div className="catalog-panels">
             <div className="catalog-panel">
-              <h3>أبرز الفئات</h3>
+              <h3>Top Categories</h3>
               {topCategories.map(([label, count]) => (
                 <div key={label} className="catalog-item">
                   <div>
                     <strong>{label}</strong>
-                    <span>{count.toLocaleString("tr-TR")} منتج</span>
+                    <span>{count.toLocaleString("tr-TR")} products</span>
                   </div>
                   <div className="catalog-bar">
                     <span style={{ width: `${(count / maxCategory) * 100}%` }} />
@@ -149,12 +149,12 @@ export default function CatalogPageAr() {
               ))}
             </div>
             <div className="catalog-panel">
-              <h3>أبرز المُصنِّعين</h3>
+              <h3>Top Manufacturers</h3>
               {topBrands.map(([label, count]) => (
                 <div key={label} className="catalog-item">
                   <div>
                     <strong>{label}</strong>
-                    <span>{count.toLocaleString("tr-TR")} منتج</span>
+                    <span>{count.toLocaleString("tr-TR")} products</span>
                   </div>
                   <div className="catalog-bar">
                     <span style={{ width: `${(count / maxBrand) * 100}%` }} />
@@ -170,47 +170,47 @@ export default function CatalogPageAr() {
         <div className="container">
           <div className="section-head">
             <div>
-              <h2>معاينة بحث سريع</h2>
-              <p>شاهد بعض النتائج فوراً.</p>
+              <h2>Quick Search Preview</h2>
+              <p>See a few results instantly.</p>
             </div>
-            <div className="section-badge">معاينة</div>
+            <div className="section-badge">Preview</div>
           </div>
           <div className="catalog-preview-card">
             <div className="input-group wide">
-              <label htmlFor="catalog-query-ar">المنتج / المخزون / المُصنِّع</label>
+              <label htmlFor="catalog-query-en">Product / Stock / Manufacturer</label>
               <input
-                id="catalog-query-ar"
+                id="catalog-query-en"
                 type="text"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="مثال: WK735، P502478، فلتر وقود..."
+                placeholder="e.g., WK735, P502478, Fuel Filter..."
               />
             </div>
             {loading ? (
-              <div className="result-empty">جاري تحميل الكتالوج...</div>
+              <div className="result-empty">Loading catalog...</div>
             ) : results.length === 0 ? (
-              <div className="result-empty">أدخل حرفين على الأقل للبحث.</div>
+              <div className="result-empty">Enter at least 2 characters to search.</div>
             ) : (
               <div className="preview-list">
                 {results.map((item, index) => (
                   <div key={`${item.stokKodu}-${index}`} className="preview-item">
                     <div>
-                      <strong>{item.stokIsmi || "منتج"}</strong>
-                      <span>المخزون: {item.stokKodu || "-"}</span>
+                      <strong>{item.stokIsmi || "Product"}</strong>
+                      <span>Stock: {item.stokKodu || "-"}</span>
                     </div>
-                    <a href={link("/urun-ara")}>عرض التفاصيل</a>
+                    <a href={link("/urun-ara")}>View Details</a>
                   </div>
                 ))}
               </div>
             )}
             <div className="preview-actions">
               <a className="btn btn-primary" href={link("/urun-ara")}>
-                صفحة بحث المنتجات
+                Product Search Page
               </a>
             </div>
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }

@@ -30,11 +30,11 @@ const labelOverrides: Record<string, string> = {
 };
 
 const quickFilters = [
-  { label: "فلتر الزيت", kod3: "Yağ" },
-  { label: "فلتر الهواء", kod3: "Hava" },
-  { label: "فلتر الوقود", kod3: "Yakıt" },
-  { label: "فلتر المقصورة", kod3: "Polen" },
-  { label: "فلتر هيدروليك", kod3: "Hidrolik" },
+  { label: "Oil Filter", kod3: "Yağ" },
+  { label: "Air Filter", kod3: "Hava" },
+  { label: "Fuel Filter", kod3: "Yakıt" },
+  { label: "Cabin Filter", kod3: "Polen" },
+  { label: "Hydraulic Filter", kod3: "Hidrolik" },
 ];
 
 function normalizeSearch(value: string | undefined) {
@@ -255,11 +255,11 @@ export default function SearchPage() {
 
   const activeChips = useMemo(() => {
     const chips: string[] = [];
-    if (queryNorm) chips.push(`بحث: ${query}`);
-    if (kod1) chips.push(`كود-1: ${formatLabel(kod1)}`);
-    if (kod3) chips.push(`كود-3: ${formatLabel(kod3)}`);
-    if (kod4) chips.push(`كود-4: ${formatLabel(kod4)}`);
-    if (brand) chips.push(`المُصنِّع: ${formatLabel(brand)}`);
+    if (queryNorm) chips.push(`Search: ${query}`);
+    if (kod1) chips.push(`Code-1: ${formatLabel(kod1)}`);
+    if (kod3) chips.push(`Code-3: ${formatLabel(kod3)}`);
+    if (kod4) chips.push(`Code-4: ${formatLabel(kod4)}`);
+    if (brand) chips.push(`Manufacturer: ${formatLabel(brand)}`);
     return chips;
   }, [queryNorm, query, kod1, kod3, kod4, brand]);
 
@@ -270,43 +270,43 @@ export default function SearchPage() {
 
   const relatedSearches = useMemo(() => {
     const base = [
-      { label: "فلتر الزيت", value: "Yağ filtresi" },
-      { label: "فلتر الوقود", value: "Yakıt filtresi" },
-      { label: "فلتر الهواء", value: "Hava filtresi" },
-      { label: "فلتر المقصورة", value: "Polen filtresi" },
-      { label: "فلتر هيدروليك", value: "Hidrolik filtresi" },
+      { label: "Oil filter", value: "Yağ filtresi" },
+      { label: "Fuel filter", value: "Yakıt filtresi" },
+      { label: "Air filter", value: "Hava filtresi" },
+      { label: "Cabin filter", value: "Polen filtresi" },
+      { label: "Hydraulic filter", value: "Hidrolik filtresi" },
       { label: "WK735", value: "WK735" },
       { label: "P502478", value: "P502478" },
     ];
     if (!queryNorm) return base;
     if (queryNorm.includes("YAG") || queryNorm.includes("YAĞ")) {
       return [
-        { label: "فلتر الزيت", value: "Yağ filtresi" },
-        { label: "فلتر هيدروليك", value: "Hidrolik filtresi" },
-        { label: "فلتر الوقود", value: "Yakıt filtresi" },
+        { label: "Oil filter", value: "Yağ filtresi" },
+        { label: "Hydraulic filter", value: "Hidrolik filtresi" },
+        { label: "Fuel filter", value: "Yakıt filtresi" },
         { label: "WK735", value: "WK735" },
       ];
     }
     if (queryNorm.includes("YAKIT")) {
       return [
-        { label: "فلتر الوقود", value: "Yakıt filtresi" },
-        { label: "فلتر الهواء", value: "Hava filtresi" },
+        { label: "Fuel filter", value: "Yakıt filtresi" },
+        { label: "Air filter", value: "Hava filtresi" },
         { label: "WK735", value: "WK735" },
         { label: "P502478", value: "P502478" },
       ];
     }
     if (queryNorm.includes("HAVA")) {
       return [
-        { label: "فلتر الهواء", value: "Hava filtresi" },
-        { label: "فلتر المقصورة", value: "Polen filtresi" },
-        { label: "فلتر الزيت", value: "Yağ filtresi" },
+        { label: "Air filter", value: "Hava filtresi" },
+        { label: "Cabin filter", value: "Polen filtresi" },
+        { label: "Oil filter", value: "Yağ filtresi" },
       ];
     }
     if (queryNorm.includes("POLEN")) {
       return [
-        { label: "فلتر المقصورة", value: "Polen filtresi" },
-        { label: "فلتر الهواء", value: "Hava filtresi" },
-        { label: "فلتر المقصورة", value: "Kabin filtresi" },
+        { label: "Cabin filter", value: "Polen filtresi" },
+        { label: "Air filter", value: "Hava filtresi" },
+        { label: "Cabin filter", value: "Kabin filtresi" },
       ];
     }
     return base;
@@ -362,24 +362,24 @@ export default function SearchPage() {
   }, [modalOpen]);
 
   return (
-    <div className="rtl" dir="rtl">
+    <>
       <section id="search-panel" className="section search-section search-page">
         <div className="container wide">
           <div className="section-head">
             <div>
-              <h2>بحث المنتجات</h2>
+              <h2>Product Search</h2>
             </div>
-            <div className="section-badge">الكتالوج</div>
+            <div className="section-badge">Catalog</div>
           </div>
 
           <div className="search-panel">
             <div className="search-grid">
               <div className="input-group wide">
-                <label htmlFor="query">المنتج / المخزون / المُصنِّع / المجموعة</label>
+                <label htmlFor="query">Product / Stock / Manufacturer / Group</label>
                 <input
                   id="query"
                   type="text"
-                  placeholder="مثال: WK735، P502478، فلتر وقود..."
+                  placeholder="e.g., WK735, P502478, Fuel Filter..."
                   value={queryInput}
                   onChange={(event) => setQueryInput(event.target.value)}
                   onKeyDown={(event) => {
@@ -391,7 +391,7 @@ export default function SearchPage() {
                 />
               </div>
               <div className="input-group">
-                <label htmlFor="filter-kod1">الفئة (Kod-1)</label>
+                <label htmlFor="filter-kod1">Category (Code-1)</label>
                 <select
                   id="filter-kod1"
                   value={kod1}
@@ -400,7 +400,7 @@ export default function SearchPage() {
                     setLimit(30);
                   }}
                 >
-                  <option value="">الكل</option>
+                  <option value="">All</option>
                   {optionsBase.kod1.map((opt) => (
                     <option key={opt.value} value={opt.value}>
                       {opt.label}
@@ -409,7 +409,7 @@ export default function SearchPage() {
                 </select>
               </div>
               <div className="input-group">
-                <label htmlFor="filter-kod3">الفئة الفرعية (Kod-3)</label>
+                <label htmlFor="filter-kod3">Subcategory (Code-3)</label>
                 <select
                   id="filter-kod3"
                   value={kod3}
@@ -418,7 +418,7 @@ export default function SearchPage() {
                     setLimit(30);
                   }}
                 >
-                  <option value="">الكل</option>
+                  <option value="">All</option>
                   {optionsBase.kod3.map((opt) => (
                     <option key={opt.value} value={opt.value}>
                       {opt.label}
@@ -427,7 +427,7 @@ export default function SearchPage() {
                 </select>
               </div>
               <div className="input-group">
-                <label htmlFor="filter-kod4">النوع (Kod-4)</label>
+                <label htmlFor="filter-kod4">Type (Code-4)</label>
                 <select
                   id="filter-kod4"
                   value={kod4}
@@ -436,7 +436,7 @@ export default function SearchPage() {
                     setLimit(30);
                   }}
                 >
-                  <option value="">الكل</option>
+                  <option value="">All</option>
                   {optionsBase.kod4.map((opt) => (
                     <option key={opt.value} value={opt.value}>
                       {opt.label}
@@ -445,7 +445,7 @@ export default function SearchPage() {
                 </select>
               </div>
               <div className="input-group">
-                <label htmlFor="filter-brand">المُصنِّع</label>
+                <label htmlFor="filter-brand">Manufacturer</label>
                 <select
                   id="filter-brand"
                   value={brand}
@@ -454,7 +454,7 @@ export default function SearchPage() {
                     setLimit(30);
                   }}
                 >
-                  <option value="">الكل</option>
+                  <option value="">All</option>
                   {optionsBase.brand.map((opt) => (
                     <option key={opt.value} value={opt.value}>
                       {opt.label}
@@ -467,8 +467,8 @@ export default function SearchPage() {
               <div className="active-filters">
                 {activeChips.length === 0 ? (
                   <div className="filter-empty">
-                    <strong>لم يتم اختيار فلتر</strong>
-                    <span>ابحث أو اختر فلترًا</span>
+                    <strong>No filter selected</strong>
+                    <span>Search or select a filter</span>
                   </div>
                 ) : (
                   activeChips.map((chip) => (
@@ -480,17 +480,17 @@ export default function SearchPage() {
               </div>
               <div className="search-buttons">
                 <button className="btn btn-ghost" type="button" onClick={handleReset}>
-                  مسح
+                  Clear
                 </button>
                 <button className="btn btn-primary" type="button" onClick={handleSearchOpen}>
-                  بحث
+                  Search
                 </button>
               </div>
             </div>
           </div>
 
           <div className="quick-filters">
-            <span>فلاتر سريعة:</span>
+            <span>Quick filters:</span>
             {quickFilters.map((item) => (
               <button
                 key={item.label}
@@ -504,7 +504,7 @@ export default function SearchPage() {
           </div>
 
           <div className="related-searches">
-            <span>بحث آخرون أيضًا</span>
+            <span>People also searched</span>
             <div className="related-chips">
               {relatedSearches.map((item) => (
                 <button
@@ -526,10 +526,10 @@ export default function SearchPage() {
               <div>
                 <strong>
                   {loading
-                    ? "جاري تحميل المنتجات"
-                    : `${filtered.length.toLocaleString("tr-TR")} منتج تم العثور عليه`}
+                    ? "Loading products"
+                    : `${filtered.length.toLocaleString("tr-TR")} products found`}
                 </strong>
-                <span>افتح لرؤية النتائج</span>
+                <span>Open to view results</span>
               </div>
             </div>
           ) : null}
@@ -556,11 +556,11 @@ export default function SearchPage() {
                   quality={100}
                 />
                 <div>
-                  <strong id="result-modal-title">نتائج البحث</strong>
+                  <strong id="result-modal-title">Search Results</strong>
                   <span>
                     {loading
-                      ? "جاري تحميل المنتجات"
-                      : `${filtered.length.toLocaleString("tr-TR")} منتج تم العثور عليه`}
+                      ? "Loading products"
+                      : `${filtered.length.toLocaleString("tr-TR")} products found`}
                   </span>
                 </div>
               </div>
@@ -575,22 +575,22 @@ export default function SearchPage() {
                   type="button"
                   className="modal-close"
                   onClick={() => setModalOpen(false)}
-                  aria-label="إغلاق"
+                  aria-label="Close"
                 >
-                  إغلاق
+                  Close
                 </button>
               </div>
             </div>
             <div className="result-modal-hero">
               <div className="modal-hero-copy">
-                <span className="eyebrow">كتالوج Powersa</span>
-                <h3>مطابقة سريعة ودقيقة</h3>
-                <p>ترشيح قوي حسب كود المخزون والمُصنِّع والفئة.</p>
+                <span className="eyebrow">Powersa Catalog</span>
+                <h3>Fast and accurate matching</h3>
+                <p>Powerful filtering by stock code, manufacturer, and category.</p>
               </div>
               <Image
                 className="modal-hero-image"
                 src="/sepet-transparent.png"
-                alt="صندوق منتجات باورسا"
+                alt="Powersa product box"
                 width={1335}
                 height={927}
                 quality={95}
@@ -598,10 +598,10 @@ export default function SearchPage() {
             </div>
             <div className="result-modal-body">
               {loading ? (
-                <div className="result-empty">جاري تحميل البيانات...</div>
+                <div className="result-empty">Loading data...</div>
               ) : visibleResults.length === 0 ? (
                 <div className="result-empty">
-                  <strong>لا توجد نتائج.</strong> جرّب تعديل الفلاتر.
+                  <strong>No results found.</strong> Try adjusting the filters.
                 </div>
               ) : (
                 <>
@@ -610,20 +610,20 @@ export default function SearchPage() {
                       {visibleResults.map((item) => (
                         <div key={`${item._idx}-${item.stokKodu}`} className="result-row">
                           <div className="result-col">
-                            <span className="result-label">المنتج</span>
-                            <div className="result-name">{item.stokIsmi || "منتج"}</div>
-                            <div className="result-sub">المجموعة: {item.grupIsmi || "-"}</div>
+                            <span className="result-label">Product</span>
+                            <div className="result-name">{item.stokIsmi || "Product"}</div>
+                            <div className="result-sub">Group: {item.grupIsmi || "-"}</div>
                           </div>
                           <div className="result-col">
-                            <span className="result-label">كود المخزون</span>
+                            <span className="result-label">Stock Code</span>
                             <div className="result-value">{item.stokKodu || "-"}</div>
                           </div>
                           <div className="result-col">
-                            <span className="result-label">المُصنِّع</span>
+                            <span className="result-label">Manufacturer</span>
                             <div className="result-value">{item.ureticiKodu || "-"}</div>
                           </div>
                           <div className="result-col">
-                            <span className="result-label">الفئة</span>
+                            <span className="result-label">Category</span>
                             <div className="result-tags">
                             {item.kod1 ? (
                               <span className="pill">{formatLabel(item.kod1)}</span>
@@ -637,9 +637,9 @@ export default function SearchPage() {
                           </div>
                           </div>
                           <div className="result-col result-actions">
-                            <span className="result-label">الإجراء</span>
+                            <span className="result-label">Action</span>
                             <button type="button" onClick={() => handleCopy(item.stokKodu)}>
-                              نسخ كود المخزون
+                              Copy Stock Code
                             </button>
                           </div>
                         </div>
@@ -653,7 +653,7 @@ export default function SearchPage() {
                       type="button"
                       onClick={() => setLimit(limit + 30)}
                     >
-                      عرض المزيد
+                      Show More
                     </button>
                   ) : null}
                 </>
@@ -662,6 +662,6 @@ export default function SearchPage() {
           </div>
         </div>
       ) : null}
-    </div>
+    </>
   );
 }

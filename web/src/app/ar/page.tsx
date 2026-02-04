@@ -2,6 +2,9 @@ import Image from "next/image";
 import WelcomeModal from "@/components/WelcomeModal";
 
 export default function HomeAr() {
+  const base = "/ar";
+  const link = (path: string) => `${base}${path}`;
+
   return (
     <div className="rtl" dir="rtl">
       <section className="hero-banner">
@@ -14,10 +17,10 @@ export default function HomeAr() {
               وفلاتر الفئات.
             </p>
             <div className="hero-actions">
-              <a className="btn btn-primary" href="/ar/urun-ara">
+              <a className="btn btn-primary" href={link("/urun-ara")}>
                 بحث الكتالوج
               </a>
-              <a className="btn btn-ghost" href="/ar/hizmetler">
+              <a className="btn btn-ghost" href={link("/hizmetler")}>
                 عرض الخدمات
               </a>
             </div>
@@ -120,7 +123,7 @@ export default function HomeAr() {
             </div>
             <div className="home-search-panel">
               <div className="home-search-actions">
-                <a className="btn btn-primary" href="/ar/urun-ara">
+                <a className="btn btn-primary" href={link("/urun-ara")}>
                   الانتقال إلى بحث الكتالوج
                 </a>
               </div>
@@ -149,7 +152,7 @@ export default function HomeAr() {
                 <div className="service-body">
                   <h3>فلتر الزيت</h3>
                   <p>ترشيح عالٍ لحماية المحرك والأداء.</p>
-                  <a className="text-link" href="/ar/hizmetler#yag">
+                  <a className="text-link" href={link("/hizmetler#yag")}>
                     عرض التفاصيل
                   </a>
                 </div>
@@ -165,7 +168,7 @@ export default function HomeAr() {
                 <div className="service-body">
                   <h3>فلتر الهواء</h3>
                   <p>تدفق هواء نظيف لعمل أكثر كفاءة.</p>
-                  <a className="text-link" href="/ar/hizmetler#hava">
+                  <a className="text-link" href={link("/hizmetler#hava")}>
                     عرض التفاصيل
                   </a>
                 </div>
@@ -181,7 +184,7 @@ export default function HomeAr() {
                 <div className="service-body">
                   <h3>فلتر الوقود</h3>
                   <p>نظافة قصوى في خطوط الوقود.</p>
-                  <a className="text-link" href="/ar/hizmetler#yakit">
+                  <a className="text-link" href={link("/hizmetler#yakit")}>
                     عرض التفاصيل
                   </a>
                 </div>
@@ -197,7 +200,7 @@ export default function HomeAr() {
                 <div className="service-body">
                   <h3>فلتر المقصورة</h3>
                   <p>ترشيح فعال لجودة هواء المقصورة.</p>
-                  <a className="text-link" href="/ar/hizmetler#polen">
+                  <a className="text-link" href={link("/hizmetler#polen")}>
                     عرض التفاصيل
                   </a>
                 </div>
@@ -213,7 +216,7 @@ export default function HomeAr() {
                 <div className="service-body">
                   <h3>فلتر هيدروليك</h3>
                   <p>حماية قوية لظروف العمل الشاقة.</p>
-                  <a className="text-link" href="/ar/hizmetler#hidrolik">
+                  <a className="text-link" href={link("/hizmetler#hidrolik")}>
                     عرض التفاصيل
                   </a>
                 </div>
@@ -237,7 +240,7 @@ export default function HomeAr() {
               <h3>ثقة قصوى في الترشيح.</h3>
               <p>اطلع على صفحة الجودة للمتانة والكفاءة العالية وتغطية واسعة.</p>
             </div>
-            <a className="btn btn-primary" href="/ar/kalite">
+            <a className="btn btn-primary" href={link("/kalite")}>
               اذهب إلى صفحة الجودة
             </a>
           </div>

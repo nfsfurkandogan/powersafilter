@@ -88,6 +88,44 @@ const siteInfo = {
       "Şubeler",
     ],
   },
+  en: {
+    services: [
+      "Oil Filter",
+      "Air Filter",
+      "Fuel Filter",
+      "Cabin Filter",
+      "Hydraulic Filter",
+    ],
+    branches: ["Georgia Batumi", "Trabzon", "Samsun", "Erzurum Center"],
+    quality: ["Wide product range", "Fast access", "Strong performance"],
+    pages: [
+      "Home",
+      "Product Search (Catalog)",
+      "About",
+      "Services",
+      "Quality",
+      "Branches",
+    ],
+  },
+  ka: {
+    services: [
+      "ზეთის ფილტრი",
+      "ჰაერის ფილტრი",
+      "საწვავის ფილტრი",
+      "კაბინის ფილტრი",
+      "ჰიდრავლიკის ფილტრი",
+    ],
+    branches: ["ბათუმი, საქართველო", "ტრაბზონი", "სამსუნი", "ერზურუმი (ცენტრი)"],
+    quality: ["ფართო პროდუქციის პორტფელი", "სწრაფი წვდომა", "ძლიერი შესრულება"],
+    pages: [
+      "მთავარი",
+      "პროდუქტის ძიება (კატალოგი)",
+      "ჩვენ შესახებ",
+      "სერვისები",
+      "ხარისხი",
+      "ფილიალები",
+    ],
+  },
   ar: {
     services: [
       "فلتر الزيت",
@@ -146,6 +184,75 @@ const labels = {
     stock: "Stok",
     maker: "Üretici",
   },
+  en: {
+    greeting: "Hi! Search by stock code, product name, or manufacturer code.",
+    minChars:
+      "Please enter at least 2 characters or a stock/manufacturer code.",
+    searchHint: "Use a stock or manufacturer code to search for products.",
+    contactText: "I can direct you to the contact page.",
+    contactLink: "Contact",
+    contactNote: "Share phone, email, and address details so we can add them.",
+    branchesText: "Our branches:",
+    branchesLink: "Branches page",
+    servicesText: "Our services:",
+    servicesLink: "Services page",
+    qualityText: "Our quality and trust approach:",
+    qualityLink: "Quality page",
+    catalogText: "For catalog search you can use the Product Search page.",
+    catalogSearch: "Product Search",
+    catalogCenter: "Catalog Center",
+    aboutText: "Powersa Filter delivers premium filter solutions.",
+    aboutLink: "About",
+    pagesText: "Main pages on the site:",
+    noResults: "No results found. Try a stock or manufacturer code.",
+    toggle: "Power Assistant",
+    name: "Power Assistant",
+    subtitle: "Product search helper",
+    typing: "Powersa is typing...",
+    close: "Close",
+    whatsapp: "Contact via WhatsApp",
+    loading: "Loading data...",
+    placeholder: "Enter stock code or product name",
+    send: "Send",
+    product: "Product",
+    productFallback: "Product",
+    stock: "Stock code",
+    maker: "Manufacturer",
+  },
+  ka: {
+    greeting: "გამარჯობა! მოძებნეთ სტოკ-კოდით, პროდუქტის სახელით ან მწარმოებლის კოდით.",
+    minChars: "გთხოვთ ჩაწერეთ მინიმუმ 2 სიმბოლო ან სტოკ/მწარმოებლის კოდი.",
+    searchHint: "ძიებისთვის გამოიყენეთ სტოკ ან მწარმოებლის კოდი.",
+    contactText: "შემიძლია გადაგიყვანოთ საკონტაქტო გვერდზე.",
+    contactLink: "კონტაქტი",
+    contactNote: "ტელეფონი, ელფოსტა და მისამართი მოგვწერეთ, დავამატებთ.",
+    branchesText: "ჩვენი ფილიალები:",
+    branchesLink: "ფილიალების გვერდი",
+    servicesText: "ჩვენი სერვისები:",
+    servicesLink: "სერვისების გვერდი",
+    qualityText: "ჩვენი ხარისხისა და საიმედოობის მიდგომა:",
+    qualityLink: "ხარისხის გვერდი",
+    catalogText: "კატალოგის ძიებისთვის გამოიყენეთ პროდუქტის ძიების გვერდი.",
+    catalogSearch: "პროდუქტის ძიება",
+    catalogCenter: "კატალოგის ცენტრი",
+    aboutText: "Powersa Filter გთავაზობთ პრემიუმ ფილტრების გადაწყვეტილებებს.",
+    aboutLink: "ჩვენ შესახებ",
+    pagesText: "საიტის მთავარი გვერდები:",
+    noResults: "შედეგები ვერ მოიძებნა. სცადეთ სტოკ ან მწარმოებლის კოდი.",
+    toggle: "Power ასისტენტი",
+    name: "Power ასისტენტი",
+    subtitle: "პროდუქტის ძიების დამხმარე",
+    typing: "Powersa წერს...",
+    close: "დახურვა",
+    whatsapp: "WhatsApp-ით დაკავშირება",
+    loading: "მონაცემები იტვირთება...",
+    placeholder: "ჩაწერეთ სტოკ კოდი ან პროდუქტის სახელი",
+    send: "გაგზავნა",
+    product: "პროდუქტი",
+    productFallback: "პროდუქტი",
+    stock: "სტოკ კოდი",
+    maker: "მწარმოებელი",
+  },
   ar: {
     greeting: "مرحبًا! ابحث بكود المخزون أو اسم المنتج أو كود المُصنِّع.",
     minChars: "يرجى إدخال حرفين على الأقل أو كتابة كود المخزون/المُصنِّع.",
@@ -196,7 +303,10 @@ type Intent =
   | null;
 
 function getLocale(pathname: string): Locale {
-  return pathname === "/ar" || pathname.startsWith("/ar/") ? "ar" : "tr";
+  if (pathname === "/en" || pathname.startsWith("/en/")) return "en";
+  if (pathname === "/ka" || pathname.startsWith("/ka/")) return "ka";
+  if (pathname === "/ar" || pathname.startsWith("/ar/")) return "ar";
+  return "tr";
 }
 
 function detectIntent(query: string, locale: Locale): Intent {
@@ -256,6 +366,94 @@ function detectIntent(query: string, locale: Locale): Intent {
       q.includes("الموقع") ||
       q.includes("الصفحة")
     ) {
+      return "pages";
+    }
+    return null;
+  }
+
+  if (locale === "en") {
+    const q = query.toLowerCase();
+    if (
+      q.includes("contact") ||
+      q.includes("phone") ||
+      q.includes("email") ||
+      q.includes("mail") ||
+      q.includes("address")
+    ) {
+      return "contact";
+    }
+    if (
+      q.includes("branch") ||
+      q.includes("branches") ||
+      q.includes("batumi") ||
+      q.includes("trabzon") ||
+      q.includes("samsun") ||
+      q.includes("erzurum")
+    ) {
+      return "branches";
+    }
+    if (q.includes("service") || q.includes("services")) {
+      return "services";
+    }
+    if (q.includes("quality") || q.includes("trust") || q.includes("standard")) {
+      return "quality";
+    }
+    if (
+      q.includes("catalog") ||
+      q.includes("search") ||
+      q.includes("product") ||
+      q.includes("stock")
+    ) {
+      return "catalog";
+    }
+    if (q.includes("about") || q.includes("company") || q.includes("corporate")) {
+      return "about";
+    }
+    if (q.includes("pages") || q.includes("menu") || q.includes("site")) {
+      return "pages";
+    }
+    return null;
+  }
+
+  if (locale === "ka") {
+    const q = query.toLowerCase();
+    if (
+      q.includes("კონტაქტ") ||
+      q.includes("ტელეფონ") ||
+      q.includes("ელფოსტ") ||
+      q.includes("მეილ") ||
+      q.includes("მისამართ")
+    ) {
+      return "contact";
+    }
+    if (
+      q.includes("ფილიალ") ||
+      q.includes("ბათუმ") ||
+      q.includes("ბატუმ") ||
+      q.includes("ტრაბზონ") ||
+      q.includes("სამსუნ") ||
+      q.includes("ერზურუმ")
+    ) {
+      return "branches";
+    }
+    if (q.includes("სერვის") || q.includes("მომსახურ")) {
+      return "services";
+    }
+    if (q.includes("ხარისხ")) {
+      return "quality";
+    }
+    if (
+      q.includes("კატალოგ") ||
+      q.includes("ძიებ") ||
+      q.includes("პროდუქტ") ||
+      q.includes("სტოკ")
+    ) {
+      return "catalog";
+    }
+    if (q.includes("ჩვენ შესახებ") || q.includes("კომპან") || q.includes("კორპორ")) {
+      return "about";
+    }
+    if (q.includes("გვერდ") || q.includes("მენიუ") || q.includes("საიტ")) {
       return "pages";
     }
     return null;
@@ -375,7 +573,8 @@ export default function PowerAssistant() {
     const hasNormMin = query.length >= 2;
     const responses: Message[] = [];
 
-    if (!hasNormMin && !(locale === "ar" && hasRawMin)) {
+    const allowRaw = locale !== "tr" && hasRawMin;
+    if (!hasNormMin && !allowRaw) {
       responses.push({
         role: "assistant",
         text: t.minChars,
@@ -383,7 +582,7 @@ export default function PowerAssistant() {
       return scheduleResponse(responses);
     }
 
-    const intentQuery = locale === "ar" ? trimmed : query;
+    const intentQuery = locale === "tr" ? query : trimmed;
     const intent = detectIntent(intentQuery, locale);
     if (intent === "contact") {
       responses.push({
@@ -489,13 +688,26 @@ export default function PowerAssistant() {
     );
 
     const maxCount = Math.min(results.length, 6);
-    const countText = maxCount.toLocaleString(locale === "ar" ? "ar-EG" : "tr-TR");
+    const numberLocale =
+      locale === "ar"
+        ? "ar-EG"
+        : locale === "en"
+        ? "en-US"
+        : locale === "ka"
+        ? "ka-GE"
+        : "tr-TR";
+    const countText = maxCount.toLocaleString(numberLocale);
+    const resultText =
+      locale === "ar"
+        ? `وجدت لك ${countText} نتيجة مناسبة:`
+        : locale === "en"
+        ? `Found ${countText} matching results for you:`
+        : locale === "ka"
+        ? `აღმოვაჩინე თქვენთვის ${countText} შესაბამისი შედეგი:`
+        : `Size uygun ${countText} sonuç buldum:`;
     responses.push({
       role: "assistant",
-      text:
-        locale === "ar"
-          ? `وجدت لك ${countText} نتيجة مناسبة:`
-          : `Size uygun ${countText} sonuç buldum:`,
+      text: resultText,
       results: results.slice(0, 6),
     });
     return scheduleResponse(responses);
@@ -505,13 +717,18 @@ export default function PowerAssistant() {
     await runSearch(input);
   };
 
-  const suggested = useMemo(
-    () =>
-      locale === "ar"
-        ? ["اتصل بنا", "فروعنا", "خدماتنا", "WK735", "P502478"]
-        : ["İletişim", "Şubelerimiz", "Hizmetlerimiz", "WK735", "Yakıt filtresi"],
-    [locale]
-  );
+  const suggested = useMemo(() => {
+    if (locale === "ar") {
+      return ["اتصل بنا", "فروعنا", "خدماتنا", "WK735", "P502478"];
+    }
+    if (locale === "en") {
+      return ["Contact", "Branches", "Services", "WK735", "Fuel filter"];
+    }
+    if (locale === "ka") {
+      return ["კონტაქტი", "ფილიალები", "სერვისები", "WK735", "საწვავის ფილტრი"];
+    }
+    return ["İletişim", "Şubelerimiz", "Hizmetlerimiz", "WK735", "Yakıt filtresi"];
+  }, [locale]);
 
   return (
     <div className={`power-assistant ${locale === "ar" ? "rtl" : ""}`.trim()}>

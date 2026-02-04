@@ -1,39 +1,45 @@
+import Image from "next/image";
+
 const branches = [
   {
-    id: "batum",
-    name: "باتومي، جورجيا",
-    established: "2019",
-    address: "العنوان: —",
-    phone: "الهاتف: —",
-    hours: "ساعات العمل: 09:00 - 18:00",
-    notes: "يوفر دعم الموزع الإقليمي وشبكة تسليم سريعة.",
+    title: "باتومي، جورجيا",
+    image: "/branch-batum.png",
+    founded: "2019",
+    address: "سيتم تزويده لاحقاً",
+    phone: "سيتم تزويده لاحقاً",
+    manager: "سيتم تزويده لاحقاً",
+    hours: "09:00 - 18:00",
+    note: "مركز مبيعات وخدمة إقليمي.",
   },
   {
-    id: "trabzon",
-    name: "طرابزون",
-    established: "2020",
-    address: "العنوان: —",
-    phone: "الهاتف: —",
-    hours: "ساعات العمل: 09:00 - 18:00",
-    notes: "يركز على مخزون سريع للتزويد في منطقة البحر الأسود.",
+    title: "طرابزون",
+    image: "/branch-trabzon.png",
+    founded: "2020",
+    address: "سيتم تزويده لاحقاً",
+    phone: "سيتم تزويده لاحقاً",
+    manager: "سيتم تزويده لاحقاً",
+    hours: "09:00 - 18:00",
+    note: "دعم لشركاء منطقة البحر الأسود.",
   },
   {
-    id: "samsun",
-    name: "سامسون",
-    established: "2021",
-    address: "العنوان: —",
-    phone: "الهاتف: —",
-    hours: "ساعات العمل: 09:00 - 18:00",
-    notes: "فريق متخصص في المركبات التجارية والخدمة الشاقة.",
+    title: "سامسون",
+    image: "/branch-samsun.png",
+    founded: "2021",
+    address: "سيتم تزويده لاحقاً",
+    phone: "سيتم تزويده لاحقاً",
+    manager: "سيتم تزويده لاحقاً",
+    hours: "09:00 - 18:00",
+    note: "نقطة مخزون وتوزيع لوجستية.",
   },
   {
-    id: "erzurum",
-    name: "أرضروم المركز",
-    established: "2016",
-    address: "العنوان: —",
-    phone: "الهاتف: —",
-    hours: "ساعات العمل: 09:00 - 18:00",
-    notes: "تُدار هنا عمليات المستودع المركزي والإدارة.",
+    title: "أرضروم المركز",
+    image: "/branch-erzurum.png",
+    founded: "2018",
+    address: "ياكوتية، أرضروم",
+    phone: "+90 442 000 00 00",
+    manager: "سيتم تزويده لاحقاً",
+    hours: "09:00 - 18:00",
+    note: "المكتب الرئيسي وعمليات الكتالوج.",
   },
 ];
 
@@ -43,25 +49,25 @@ export default function BranchesPageAr() {
       <section className="page-hero">
         <div className="container page-hero-inner">
           <div>
-            <span className="eyebrow">فروعنا</span>
-            <h1>قوة إقليمية بمعيار مؤسسي واحد.</h1>
+            <span className="eyebrow">الفروع</span>
+            <h1>شبكة إقليمية لخدمة قوية وسريعة.</h1>
             <p>
-              نقدم نفس الجودة والخدمة السريعة في جميع الفروع. افتح التفاصيل لعرض
-              سنة التأسيس ومعلومات التواصل وساعات العمل.
+              يمكنك مشاركة بيانات التواصل للفروع وسنقوم بتحديثها هنا. كل فرع يدعم
+              البحث عن المنتجات واستمرارية الإمداد.
             </p>
           </div>
           <div className="page-hero-card">
             <div>
-              <strong>خدمة موحدة</strong>
-              <p>نفس الإجراءات والجودة في جميع الفروع.</p>
+              <strong>4 فروع نشطة</strong>
+              <p>باتومي، طرابزون، سامسون، أرضروم المركز.</p>
             </div>
             <div>
-              <strong>توريد سريع</strong>
-              <p>تسليم سريع عبر إدارة المخزون الإقليمي.</p>
+              <strong>دعم إقليمي</strong>
+              <p>استجابة سريعة ووصول للمخزون في كل منطقة.</p>
             </div>
             <div>
-              <strong>دعم مؤسسي</strong>
-              <p>أولوية لطلبات الفروع والوكلاء.</p>
+              <strong>تنسيق مؤسسي</strong>
+              <p>كل الفروع تتبع نفس معيار الكتالوج.</p>
             </div>
           </div>
         </div>
@@ -72,26 +78,37 @@ export default function BranchesPageAr() {
           <div className="section-head">
             <div>
               <h2>تفاصيل الفروع</h2>
-              <p>يمكننا إدارة المعلومات المحدثة لكل فرع من هنا.</p>
+              <p>اضغط على البطاقة لعرض التفاصيل.</p>
             </div>
             <div className="section-badge">الفروع</div>
           </div>
-
           <div className="accordion">
             {branches.map((branch) => (
-              <details key={branch.id} className="accordion-item">
+              <details key={branch.title}>
                 <summary>
-                  <div>
-                    <strong>{branch.name}</strong>
-                    <span>التأسيس: {branch.established}</span>
-                  </div>
-                  <span className="accordion-toggle">تفاصيل</span>
+                  <span>{branch.title}</span>
+                  <span>تأسس: {branch.founded}</span>
                 </summary>
-                <div className="accordion-content">
-                  <p>{branch.address}</p>
-                  <p>{branch.phone}</p>
-                  <p>{branch.hours}</p>
-                  <p>{branch.notes}</p>
+                <div className="accordion-body">
+                  <div className="branch-photo">
+                    <Image
+                      src={branch.image}
+                      alt={branch.title}
+                      width={1600}
+                      height={1000}
+                      quality={90}
+                      sizes="(max-width: 1024px) 90vw, 520px"
+                    />
+                  </div>
+                  <div className="branch-details">
+                    <p>{branch.note}</p>
+                    <div className="branch-meta">
+                      <span>العنوان: {branch.address}</span>
+                      <span>الهاتف: {branch.phone}</span>
+                      <span>المدير: {branch.manager}</span>
+                      <span>الساعات: {branch.hours}</span>
+                    </div>
+                  </div>
                 </div>
               </details>
             ))}

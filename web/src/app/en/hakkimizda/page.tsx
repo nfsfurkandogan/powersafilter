@@ -1,41 +1,42 @@
 import Image from "next/image";
 
-export default function AboutPageAr() {
-  const base = "/ar";
+export default function AboutPageEn() {
+  const base = "/en";
   const link = (path: string) => `${base}${path}`;
 
   return (
-    <div className="rtl" dir="rtl">
+    <>
       <section className="page-hero">
         <div className="container page-hero-inner">
           <div>
-            <span className="eyebrow">من نحن</span>
-            <h1>Powersa Filter توفر الفلتر المناسب بسرعة وموثوقية.</h1>
+            <span className="eyebrow">About</span>
+            <h1>Powersa Filter delivers the right filter fast and reliably.</h1>
             <p>
-              نخدم قطاعات السيارات والمركبات التجارية والثقيلة، مع تجربة بحث قوية
-              ومعلومات مخزون واضحة وتصنيفات دقيقة تساعد العملاء على العمل بسرعة.
+              Serving automotive, commercial, and heavy-duty segments, Powersa Filter
+              offers a search experience, strong stock data, and clear product
+              categories that help customers move fast.
             </p>
             <div className="hero-actions">
               <a className="btn btn-primary" href={link("/urun-ara")}>
-                ابدأ البحث
+                Start Product Search
               </a>
               <a className="btn btn-ghost" href={link("/hizmetler")}>
-                عرض الخدمات
+                View Services
               </a>
             </div>
           </div>
           <div className="page-hero-card">
             <div>
-              <strong>محفظة منتجات واسعة</strong>
-              <p>حلول مناسبة لمختلف أنواع المركبات.</p>
+              <strong>Wide Product Portfolio</strong>
+              <p>Solutions for different vehicle types.</p>
             </div>
             <div>
-              <strong>اختيار سريع وواضح</strong>
-              <p>بحث سريع بالكود والفئة.</p>
+              <strong>Fast & Clear Selection</strong>
+              <p>Quick search by code and category.</p>
             </div>
             <div>
-              <strong>ثقة مؤسسية</strong>
-              <p>نهج شراكة طويل الأمد.</p>
+              <strong>Corporate Trust</strong>
+              <p>Long-term partnership approach.</p>
             </div>
           </div>
         </div>
@@ -46,19 +47,19 @@ export default function AboutPageAr() {
           <div className="about-visual-main">
             <Image
               src="/featured-2.png"
-              alt="منتجات باورسا في الخدمة"
+              alt="Powersa products in service"
               width={2048}
               height={1536}
               quality={90}
               sizes="(max-width: 1024px) 90vw, 620px"
             />
-            <div className="about-visual-badge">حلول قوية في الميدان</div>
+            <div className="about-visual-badge">Strong Solutions in the Field</div>
           </div>
           <div className="about-visual-stack">
             <div className="about-visual-card">
               <Image
                 src="/featured-1.png"
-                alt="رف منتجات باورسا"
+                alt="Powersa shelf"
                 width={2048}
                 height={1536}
                 quality={90}
@@ -68,7 +69,7 @@ export default function AboutPageAr() {
             <div className="about-visual-card">
               <Image
                 src="/from-you-3.png"
-                alt="تغليف باورسا"
+                alt="Powersa packaging"
                 width={1536}
                 height={1024}
                 quality={90}
@@ -83,27 +84,27 @@ export default function AboutPageAr() {
         <div className="container">
           <div className="section-head">
             <div>
-              <h2>ملخص مؤسسي</h2>
-              <p>محفظة قوية وبنية وصول سريعة.</p>
+              <h2>Corporate Summary</h2>
+              <p>Strong portfolio and fast access focused infrastructure.</p>
             </div>
             <div className="section-badge">Powersa</div>
           </div>
           <div className="stat-grid">
             <div className="stat-card">
               <strong>18,000+</strong>
-              <span>منتج</span>
+              <span>Products</span>
             </div>
             <div className="stat-card">
               <strong>5</strong>
-              <span>مجموعات فلاتر</span>
+              <span>Filter groups</span>
             </div>
             <div className="stat-card">
               <strong>4</strong>
-              <span>فروع نشطة</span>
+              <span>Active branches</span>
             </div>
             <div className="stat-card">
-              <strong>24 ساعة</strong>
-              <span>هدف الاستجابة السريعة</span>
+              <strong>24 Hours</strong>
+              <span>Fast response target</span>
             </div>
           </div>
         </div>
@@ -112,22 +113,22 @@ export default function AboutPageAr() {
       <section className="section about-split">
         <div className="container about-split-inner">
           <div className="about-split-copy">
-            <span className="eyebrow">قوة تشغيلية</span>
-            <h2>بنية تحتية تطابق المنتج الصحيح بسرعة.</h2>
+            <span className="eyebrow">Operational Power</span>
+            <h2>Infrastructure that matches the right product quickly.</h2>
             <p>
-              البحث في الكتالوج والتصفية حسب المُصنِّع تسرّع التحقق من كود المخزون
-              وتُسهّل الوصول للمنتج الصحيح بأقل وقت.
+              Our catalog search and manufacturer-based filtering speeds up stock
+              code verification so teams reach the right product in minimum time.
             </p>
             <ul>
-              <li>مطابقة كود المخزون ورمز المُصنِّع</li>
-              <li>هيكل فئات واضح</li>
-              <li>استجابة سريعة لاحتياجات الميدان</li>
+              <li>Stock code and manufacturer code matching</li>
+              <li>Clear category structure</li>
+              <li>Fast response to field needs</li>
             </ul>
           </div>
           <div className="about-split-visual">
             <Image
               src="/from-you-1.png"
-              alt="عملية تسليم باورسا"
+              alt="Powersa delivery process"
               width={2048}
               height={1536}
               quality={90}
@@ -141,22 +142,23 @@ export default function AboutPageAr() {
         <div className="container">
           <div className="section-head">
             <div>
-              <h2>من نحن</h2>
-              <p>Powersa Filter تقدم حلول فلترة مخصصة لاحتياجات القطاع.</p>
+              <h2>Who We Are</h2>
+              <p>Powersa Filter delivers filter solutions tailored to industry needs.</p>
             </div>
             <div className="section-badge">Powersa</div>
           </div>
           <div className="info-grid">
             <div className="info-card">
               <p>
-                نهدف إلى ربطك بالمنتج الصحيح بسرعة عبر محرك بحث قوي وفئات واضحة.
-                هدفنا إدارة جميع احتياجات الفلاتر من مركز واحد موثوق.
+                We aim to connect you with the right product quickly through a powerful
+                search engine and clear categories. Our goal is to manage all filter
+                needs from a single reliable center.
               </p>
             </div>
             <div className="info-card">
               <p>
-                مع مجموعة واسعة من فلاتر الزيت والهواء والوقود والمقصورة والهيدروليك،
-                نقدم أداءً ثابتاً للاستخدام اليومي والظروف الشاقة.
+                With a wide range of oil, air, fuel, cabin, and hydraulic filters, we
+                provide consistent performance for daily use and heavy-duty conditions.
               </p>
             </div>
           </div>
@@ -167,23 +169,24 @@ export default function AboutPageAr() {
         <div className="container">
           <div className="section-head">
             <div>
-              <h2>المهمة والرؤية</h2>
-              <p>نهج قائم على الجودة والسرعة والثقة.</p>
+              <h2>Mission & Vision</h2>
+              <p>A quality, speed, and trust focused approach.</p>
             </div>
-            <div className="section-badge">مؤسسي</div>
+            <div className="section-badge">Corporate</div>
           </div>
           <div className="info-grid">
             <div className="info-card">
-              <h3>المهمة</h3>
+              <h3>Mission</h3>
               <p>
-                تقديم الفلتر الصحيح بسرعة للحفاظ على أداء المركبات وضمان استمرارية
-                أعمال العملاء.
+                Deliver the right filter fast, protect vehicle performance, and ensure
+                continuity for customer operations.
               </p>
             </div>
             <div className="info-card">
-              <h3>الرؤية</h3>
+              <h3>Vision</h3>
               <p>
-                أن نكون علامة موثوقة ومتاحة تنتج قيمة مستدامة في حلول الفلاتر.
+                Build sustainable value as a trusted and accessible brand in filter
+                solutions.
               </p>
             </div>
           </div>
@@ -194,27 +197,27 @@ export default function AboutPageAr() {
         <div className="container">
           <div className="section-head">
             <div>
-              <h2>قيمنا</h2>
-              <p>المبادئ الأساسية التي توجه عملنا.</p>
+              <h2>Our Values</h2>
+              <p>The core principles shaping our way of work.</p>
             </div>
-            <div className="section-badge">القيم</div>
+            <div className="section-badge">Values</div>
           </div>
           <div className="value-grid">
             <div className="value-card">
-              <h3>الاعتمادية</h3>
-              <p>نرسّخ الجودة ونقدم حلولاً مستدامة.</p>
+              <h3>Reliability</h3>
+              <p>We standardize quality and deliver sustainable solutions.</p>
             </div>
             <div className="value-card">
-              <h3>السرعة</h3>
-              <p>نحسّن العمليات للوصول السريع للمنتج الصحيح.</p>
+              <h3>Speed</h3>
+              <p>We optimize processes for fast access to the right product.</p>
             </div>
             <div className="value-card">
-              <h3>الشفافية</h3>
-              <p>نقدم معلومات المنتج بوضوح وسهولة.</p>
+              <h3>Transparency</h3>
+              <p>We present product information clearly and accessibly.</p>
             </div>
             <div className="value-card">
-              <h3>الشراكة</h3>
-              <p>نبني علاقات طويلة الأمد وقوية مع العملاء.</p>
+              <h3>Partnership</h3>
+              <p>We build long-term, strong ties with our customers.</p>
             </div>
           </div>
         </div>
@@ -224,18 +227,18 @@ export default function AboutPageAr() {
         <div className="container">
           <div className="section-head">
             <div>
-              <h2>نطاق المنتجات</h2>
-              <p>نوفر مجموعات الفلاتر المناسبة لاحتياجاتك في مكان واحد.</p>
+              <h2>Product Scope</h2>
+              <p>We offer filter groups tailored to your needs.</p>
             </div>
-            <div className="section-badge">النطاق</div>
+            <div className="section-badge">Scope</div>
           </div>
           <div className="scope-grid">
-            <span>فلتر الزيت</span>
-            <span>فلتر الهواء</span>
-            <span>فلتر الوقود</span>
-            <span>فلتر المقصورة</span>
-            <span>فلتر هيدروليك</span>
-            <span>حلول فلاتر خاصة</span>
+            <span>Oil Filter</span>
+            <span>Air Filter</span>
+            <span>Fuel Filter</span>
+            <span>Cabin Filter</span>
+            <span>Hydraulic Filter</span>
+            <span>Special Filter Solutions</span>
           </div>
         </div>
       </section>
@@ -244,18 +247,18 @@ export default function AboutPageAr() {
         <div className="container">
           <div className="cta-card">
             <div>
-              <h2>اعثر على المنتج الآن</h2>
+              <h2>Find the right product now</h2>
               <p>
-                استخدم محرك البحث للوصول السريع إلى المنتج الصحيح عبر كود المخزون أو
-                الفئات.
+                Use the product search engine to reach the right product quickly with
+                stock code or category-based filtering.
               </p>
             </div>
             <a className="btn btn-primary" href={link("/urun-ara")}>
-              بحث المنتجات
+              Product Search
             </a>
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }
