@@ -22,7 +22,7 @@ type Message = {
   role: "user" | "assistant";
   text: string;
   results?: Product[];
-  list?: string[];
+  list?: ReadonlyArray<string>;
   links?: { label: string; href: string }[];
   note?: string;
 };
