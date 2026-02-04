@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 type Product = {
   stokKodu?: string;
@@ -68,26 +69,198 @@ function scoreProduct(item: Product, query: string, queryKey: string) {
 }
 
 const siteInfo = {
-  services: [
-    "Yağ Filtresi",
-    "Hava Filtresi",
-    "Yakıt Filtresi",
-    "Polen Filtresi",
-    "Hidrolik Filtresi",
-  ],
-  branches: ["Gürcistan Batum", "Trabzon", "Samsun", "Merkez Erzurum"],
-  quality: ["Geniş ürün portföyü", "Hızlı erişim", "Güçlü performans"],
-  pages: [
-    "Ana Sayfa",
-    "Ürün Ara (Katalog)",
-    "Hakkımızda",
-    "Hizmetler",
-    "Kalite",
-    "Şubeler",
-  ],
-};
+  tr: {
+    services: [
+      "Yağ Filtresi",
+      "Hava Filtresi",
+      "Yakıt Filtresi",
+      "Polen Filtresi",
+      "Hidrolik Filtresi",
+    ],
+    branches: ["Gürcistan Batum", "Trabzon", "Samsun", "Merkez Erzurum"],
+    quality: ["Geniş ürün portföyü", "Hızlı erişim", "Güçlü performans"],
+    pages: [
+      "Ana Sayfa",
+      "Ürün Ara (Katalog)",
+      "Hakkımızda",
+      "Hizmetler",
+      "Kalite",
+      "Şubeler",
+    ],
+  },
+  ar: {
+    services: [
+      "فلتر الزيت",
+      "فلتر الهواء",
+      "فلتر الوقود",
+      "فلتر المقصورة",
+      "فلتر هيدروليك",
+    ],
+    branches: ["باتومي، جورجيا", "طرابزون", "سامسون", "أرضروم المركز"],
+    quality: ["محفظة منتجات واسعة", "وصول سريع", "أداء قوي"],
+    pages: [
+      "الرئيسية",
+      "بحث المنتجات (الكتالوج)",
+      "من نحن",
+      "خدماتنا",
+      "الجودة",
+      "الفروع",
+    ],
+  },
+} as const;
 
-function detectIntent(query: string) {
+const labels = {
+  tr: {
+    greeting: "Merhaba! Stok kodu, ürün adı veya üretici kodu ile arayın.",
+    minChars: "Lütfen en az 2 karakter girin veya stok kodu/üretici kodu yazın.",
+    searchHint:
+      "Ürün aramak için stok kodu veya üretici kodu kullanabilirsiniz.",
+    contactText: "İletişim sayfasına yönlendirebilirim.",
+    contactLink: "İletişim",
+    contactNote: "Telefon, e-posta ve adres bilgisini gönderirsen ekleyebilirim.",
+    branchesText: "Şubelerimiz:",
+    branchesLink: "Şubeler sayfası",
+    servicesText: "Hizmetlerimiz:",
+    servicesLink: "Hizmetler sayfası",
+    qualityText: "Kalite ve güven yaklaşımımız:",
+    qualityLink: "Kalite sayfası",
+    catalogText: "Katalog arama için Ürün Ara sayfasını kullanabilirsiniz.",
+    catalogSearch: "Ürün Ara",
+    catalogCenter: "Katalog Merkezi",
+    aboutText: "Powersa Filter, premium filtre çözümleri sunar.",
+    aboutLink: "Hakkımızda",
+    pagesText: "Sitedeki ana sayfalar:",
+    noResults:
+      "Sonuç bulunamadı. Stok kodu veya üretici kodu ile tekrar deneyin.",
+    toggle: "Power Asistan",
+    name: "Power Asistan",
+    subtitle: "Ürün bulma yardımcısı",
+    typing: "Powersa yazıyor...",
+    close: "Kapat",
+    whatsapp: "WhatsApp ile iletişim",
+    loading: "Veriler yükleniyor...",
+    placeholder: "Stok kodu veya ürün adı yazın",
+    send: "Gönder",
+    product: "Ürün",
+    productFallback: "Ürün",
+    stock: "Stok",
+    maker: "Üretici",
+  },
+  ar: {
+    greeting: "مرحبًا! ابحث بكود المخزون أو اسم المنتج أو كود المُصنِّع.",
+    minChars: "يرجى إدخال حرفين على الأقل أو كتابة كود المخزون/المُصنِّع.",
+    searchHint:
+      "للبحث عن المنتجات، استخدم كود المخزون أو كود المُصنِّع بالأحرف اللاتينية.",
+    contactText: "يمكنني توجيهك إلى صفحة الاتصال.",
+    contactLink: "اتصل بنا",
+    contactNote: "أرسل رقم الهاتف والبريد والعنوان وسنضيفها هنا.",
+    branchesText: "فروعنا:",
+    branchesLink: "صفحة الفروع",
+    servicesText: "خدماتنا:",
+    servicesLink: "صفحة الخدمات",
+    qualityText: "نهج الجودة والثقة لدينا:",
+    qualityLink: "صفحة الجودة",
+    catalogText: "لبحث الكتالوج يمكنك استخدام صفحة بحث المنتجات.",
+    catalogSearch: "بحث المنتجات",
+    catalogCenter: "مركز الكتالوج",
+    aboutText: "باورسا فلتر تقدم حلول فلاتر متميزة.",
+    aboutLink: "من نحن",
+    pagesText: "الصفحات الرئيسية في الموقع:",
+    noResults: "لا توجد نتائج. جرّب كود المخزون أو كود المُصنِّع.",
+    toggle: "مساعد باور",
+    name: "مساعد باور",
+    subtitle: "مساعد البحث عن المنتجات",
+    typing: "باورسا يكتب...",
+    close: "إغلاق",
+    whatsapp: "التواصل عبر واتساب",
+    loading: "يتم تحميل البيانات...",
+    placeholder: "اكتب كود المخزون أو اسم المنتج",
+    send: "إرسال",
+    product: "المنتج",
+    productFallback: "منتج",
+    stock: "كود المخزون",
+    maker: "المُصنِّع",
+  },
+} as const;
+
+type Locale = keyof typeof labels;
+
+type Intent =
+  | "contact"
+  | "branches"
+  | "services"
+  | "quality"
+  | "catalog"
+  | "about"
+  | "pages"
+  | null;
+
+function getLocale(pathname: string): Locale {
+  return pathname === "/ar" || pathname.startsWith("/ar/") ? "ar" : "tr";
+}
+
+function detectIntent(query: string, locale: Locale): Intent {
+  if (!query) return null;
+  if (locale === "ar") {
+    const q = query.toLowerCase();
+    if (
+      q.includes("اتصال") ||
+      q.includes("تواصل") ||
+      q.includes("هاتف") ||
+      q.includes("بريد") ||
+      q.includes("ايميل") ||
+      q.includes("إيميل") ||
+      q.includes("عنوان")
+    ) {
+      return "contact";
+    }
+    if (
+      q.includes("فرع") ||
+      q.includes("فروع") ||
+      q.includes("باتومي") ||
+      q.includes("طرابزون") ||
+      q.includes("سامسون") ||
+      q.includes("أرضروم") ||
+      q.includes("ارضروم") ||
+      q.includes("إرزوروم") ||
+      q.includes("ارزوروم")
+    ) {
+      return "branches";
+    }
+    if (q.includes("خدمات") || q.includes("خدمة")) {
+      return "services";
+    }
+    if (q.includes("جودة") || q.includes("موثوق") || q.includes("ضمان")) {
+      return "quality";
+    }
+    if (
+      q.includes("كتالوج") ||
+      q.includes("بحث") ||
+      q.includes("منتج") ||
+      q.includes("مخزون")
+    ) {
+      return "catalog";
+    }
+    if (
+      q.includes("من نحن") ||
+      q.includes("عن") ||
+      q.includes("الشركة") ||
+      q.includes("مؤسسة") ||
+      q.includes("تعريف")
+    ) {
+      return "about";
+    }
+    if (
+      q.includes("صفحات") ||
+      q.includes("قائمة") ||
+      q.includes("الموقع") ||
+      q.includes("الصفحة")
+    ) {
+      return "pages";
+    }
+    return null;
+  }
+
   if (
     query.includes("ILETISIM") ||
     query.includes("TELEFON") ||
@@ -125,14 +298,21 @@ function detectIntent(query: string) {
 }
 
 export default function PowerAssistant() {
+  const pathname = usePathname();
+  const locale = getLocale(pathname || "/");
+  const t = labels[locale];
+  const info = siteInfo[locale];
+  const base = locale === "tr" ? "" : `/${locale}`;
+  const link = (path: string) => `${base}${path}`;
+
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState<Message[]>([
+  const [messages, setMessages] = useState<Message[]>(() => [
     {
       role: "assistant",
-      text: "Merhaba! Stok kodu, ürün adı veya üretici kodu ile arayın.",
+      text: t.greeting,
     },
   ]);
   const productsRef = useRef<Product[] | null>(null);
@@ -191,60 +371,63 @@ export default function PowerAssistant() {
     const products = productsRef.current || [];
     const query = normalizeSearch(trimmed);
     const queryKey = normalizeKey(trimmed);
+    const hasRawMin = trimmed.length >= 2;
+    const hasNormMin = query.length >= 2;
     const responses: Message[] = [];
 
-    if (!query || query.length < 2) {
+    if (!hasNormMin && !(locale === "ar" && hasRawMin)) {
       responses.push({
         role: "assistant",
-        text: "Lütfen en az 2 karakter girin veya stok kodu/üretici kodu yazın.",
+        text: t.minChars,
       });
       return scheduleResponse(responses);
     }
 
-    const intent = detectIntent(query);
+    const intentQuery = locale === "ar" ? trimmed : query;
+    const intent = detectIntent(intentQuery, locale);
     if (intent === "contact") {
       responses.push({
         role: "assistant",
-        text: "İletişim sayfasına yönlendirebilirim.",
-        links: [{ label: "İletişim", href: "/iletisim" }],
-        note: "Telefon, e-posta ve adres bilgisini gönderirsen ekleyebilirim.",
+        text: t.contactText,
+        links: [{ label: t.contactLink, href: link("/iletisim") }],
+        note: t.contactNote,
       });
       return scheduleResponse(responses);
     }
     if (intent === "branches") {
       responses.push({
         role: "assistant",
-        text: "Şubelerimiz:",
-        list: siteInfo.branches,
-        links: [{ label: "Şubeler sayfası", href: "/subeler" }],
+        text: t.branchesText,
+        list: info.branches,
+        links: [{ label: t.branchesLink, href: link("/subeler") }],
       });
       return scheduleResponse(responses);
     }
     if (intent === "services") {
       responses.push({
         role: "assistant",
-        text: "Hizmetlerimiz:",
-        list: siteInfo.services,
-        links: [{ label: "Hizmetler sayfası", href: "/hizmetler" }],
+        text: t.servicesText,
+        list: info.services,
+        links: [{ label: t.servicesLink, href: link("/hizmetler") }],
       });
       return scheduleResponse(responses);
     }
     if (intent === "quality") {
       responses.push({
         role: "assistant",
-        text: "Kalite ve güven yaklaşımımız:",
-        list: siteInfo.quality,
-        links: [{ label: "Kalite sayfası", href: "/kalite" }],
+        text: t.qualityText,
+        list: info.quality,
+        links: [{ label: t.qualityLink, href: link("/kalite") }],
       });
       return scheduleResponse(responses);
     }
     if (intent === "catalog") {
       responses.push({
         role: "assistant",
-        text: "Katalog arama için Ürün Ara sayfasını kullanabilirsiniz.",
+        text: t.catalogText,
         links: [
-          { label: "Ürün Ara", href: "/urun-ara" },
-          { label: "Katalog Merkezi", href: "/katalog" },
+          { label: t.catalogSearch, href: link("/urun-ara") },
+          { label: t.catalogCenter, href: link("/katalog") },
         ],
       });
       return scheduleResponse(responses);
@@ -252,16 +435,24 @@ export default function PowerAssistant() {
     if (intent === "about") {
       responses.push({
         role: "assistant",
-        text: "Powersa Filter, premium filtre çözümleri sunar.",
-        links: [{ label: "Hakkımızda", href: "/hakkimizda" }],
+        text: t.aboutText,
+        links: [{ label: t.aboutLink, href: link("/hakkimizda") }],
       });
       return scheduleResponse(responses);
     }
     if (intent === "pages") {
       responses.push({
         role: "assistant",
-        text: "Sitedeki ana sayfalar:",
-        list: siteInfo.pages,
+        text: t.pagesText,
+        list: info.pages,
+      });
+      return scheduleResponse(responses);
+    }
+
+    if (!hasNormMin) {
+      responses.push({
+        role: "assistant",
+        text: t.searchHint,
       });
       return scheduleResponse(responses);
     }
@@ -276,8 +467,8 @@ export default function PowerAssistant() {
         continue;
       }
       let matches = true;
-      for (let t = 0; t < tokens.length; t += 1) {
-        if (!item._search.includes(tokens[t])) {
+      for (let tIdx = 0; tIdx < tokens.length; tIdx += 1) {
+        if (!item._search.includes(tokens[tIdx])) {
           matches = false;
           break;
         }
@@ -288,7 +479,7 @@ export default function PowerAssistant() {
     if (results.length === 0) {
       responses.push({
         role: "assistant",
-        text: "Sonuç bulunamadı. Stok kodu veya üretici kodu ile tekrar deneyin.",
+        text: t.noResults,
       });
       return scheduleResponse(responses);
     }
@@ -297,9 +488,14 @@ export default function PowerAssistant() {
       (a, b) => scoreProduct(b, query, queryKey) - scoreProduct(a, query, queryKey)
     );
 
+    const maxCount = Math.min(results.length, 6);
+    const countText = maxCount.toLocaleString(locale === "ar" ? "ar-EG" : "tr-TR");
     responses.push({
       role: "assistant",
-      text: `Size uygun ${Math.min(results.length, 6)} sonuç buldum:`,
+      text:
+        locale === "ar"
+          ? `وجدت لك ${countText} نتيجة مناسبة:`
+          : `Size uygun ${countText} sonuç buldum:`,
       results: results.slice(0, 6),
     });
     return scheduleResponse(responses);
@@ -310,24 +506,21 @@ export default function PowerAssistant() {
   };
 
   const suggested = useMemo(
-    () => [
-      "İletişim",
-      "Şubelerimiz",
-      "Hizmetlerimiz",
-      "WK735",
-      "Yakıt filtresi",
-    ],
-    []
+    () =>
+      locale === "ar"
+        ? ["اتصل بنا", "فروعنا", "خدماتنا", "WK735", "P502478"]
+        : ["İletişim", "Şubelerimiz", "Hizmetlerimiz", "WK735", "Yakıt filtresi"],
+    [locale]
   );
 
   return (
-    <div className="power-assistant">
+    <div className={`power-assistant ${locale === "ar" ? "rtl" : ""}`.trim()}>
       <a
         className="assistant-whatsapp"
         href="https://wa.me/905492525001"
         target="_blank"
         rel="noreferrer"
-        aria-label="WhatsApp ile iletişim"
+        aria-label={t.whatsapp}
       >
         <svg viewBox="0 0 32 32" aria-hidden="true">
           <path
@@ -342,7 +535,7 @@ export default function PowerAssistant() {
         onClick={() => setOpen((prev) => !prev)}
       >
         <span className="assistant-toggle-dot" />
-        <span>Power Asistan</span>
+        <span>{t.toggle}</span>
       </button>
       {open ? (
         <div className="assistant-panel">
@@ -351,7 +544,7 @@ export default function PowerAssistant() {
               <div className="assistant-avatar">
                 <Image
                   src="/mascot.png"
-                  alt="Powersa maskotu"
+                  alt={t.name}
                   width={1200}
                   height={1200}
                   quality={90}
@@ -359,15 +552,15 @@ export default function PowerAssistant() {
               </div>
               <span className={`assistant-status ${isTyping ? "typing" : ""}`} />
               <div>
-                <strong>Power Asistan</strong>
-                <small>{isTyping ? "Powersa yazıyor..." : "Ürün bulma yardımcısı"}</small>
+                <strong>{t.name}</strong>
+                <small>{isTyping ? t.typing : t.subtitle}</small>
               </div>
             </div>
             <button
               className="assistant-close"
               type="button"
               onClick={() => setOpen(false)}
-              aria-label="Kapat"
+              aria-label={t.close}
             >
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path
@@ -394,9 +587,13 @@ export default function PowerAssistant() {
                         key={`${item._idx}-${item.stokKodu}`}
                         className="assistant-result-card"
                       >
-                        <strong>{item.stokIsmi || "Ürün"}</strong>
-                        <span>Stok: {item.stokKodu || "-"}</span>
-                        <span>Üretici: {item.ureticiKodu || "-"}</span>
+                        <strong>{item.stokIsmi || t.productFallback}</strong>
+                        <span>
+                          {t.stock}: {item.stokKodu || "-"}
+                        </span>
+                        <span>
+                          {t.maker}: {item.ureticiKodu || "-"}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -410,9 +607,9 @@ export default function PowerAssistant() {
                 ) : null}
                 {message.links ? (
                   <div className="assistant-links">
-                    {message.links.map((link) => (
-                      <a key={link.href} href={link.href}>
-                        {link.label}
+                    {message.links.map((linkItem) => (
+                      <a key={linkItem.href} href={linkItem.href}>
+                        {linkItem.label}
                       </a>
                     ))}
                   </div>
@@ -422,13 +619,13 @@ export default function PowerAssistant() {
                 ) : null}
               </div>
             ))}
-            {loading ? <div className="assistant-loading">Veriler yükleniyor...</div> : null}
+            {loading ? <div className="assistant-loading">{t.loading}</div> : null}
             {isTyping ? (
               <div className="assistant-typing">
                 <div className="assistant-typing-icons">
                   <Image
                     src="/mascot.png"
-                    alt="Powersa maskotu"
+                    alt={t.name}
                     width={160}
                     height={160}
                     quality={90}
@@ -460,14 +657,14 @@ export default function PowerAssistant() {
           <div className="assistant-input">
             <input
               type="text"
-              placeholder="Stok kodu veya ürün adı yazın"
+              placeholder={t.placeholder}
               value={input}
               onChange={(event) => setInput(event.target.value)}
               onKeyDown={(event) => {
                 if (event.key === "Enter") handleSend();
               }}
             />
-            <button type="button" onClick={handleSend} aria-label="Gönder">
+            <button type="button" onClick={handleSend} aria-label={t.send}>
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   d="M4 12h12M12 5l7 7-7 7"

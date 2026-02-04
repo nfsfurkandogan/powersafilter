@@ -23,6 +23,7 @@ const labels = {
     email: "E-posta: info@powersafilter.com",
     rights: "© 2026 Powersa Filter. Tüm hakları saklıdır.",
     designed: "Designed by",
+    badges: ["Yağ", "Yakıt", "Hava", "Polen", "Hidrolik"],
   },
   en: {
     tagline: "A reliable choice in filter solutions.",
@@ -41,6 +42,7 @@ const labels = {
     email: "Email: info@powersafilter.com",
     rights: "© 2026 Powersa Filter. All rights reserved.",
     designed: "Designed by",
+    badges: ["Oil", "Fuel", "Air", "Cabin", "Hydraulic"],
   },
   ka: {
     tagline: "საიმედო არჩევანი ფილტრების გადაწყვეტილებებში.",
@@ -59,6 +61,7 @@ const labels = {
     email: "ელ.ფოსტა: info@powersafilter.com",
     rights: "© 2026 Powersa Filter. ყველა უფლება დაცულია.",
     designed: "Designed by",
+    badges: ["ზეთი", "საწვავი", "ჰაერი", "სალონი", "ჰიდრავლიკა"],
   },
   ar: {
     tagline: "خيار موثوق في حلول الفلاتر.",
@@ -76,7 +79,8 @@ const labels = {
     phone: "الهاتف: +90 442 000 00 00",
     email: "البريد: info@powersafilter.com",
     rights: "© 2026 Powersa Filter. جميع الحقوق محفوظة.",
-    designed: "Designed by",
+    designed: "تصميم بواسطة",
+    badges: ["زيت", "وقود", "هواء", "مقصورة", "هيدروليك"],
   },
 } as const;
 
@@ -109,11 +113,9 @@ export default function SiteFooter() {
           </div>
           <p>{t.tagline}</p>
           <div className="footer-badges">
-            <span>Yağ</span>
-            <span>Yakıt</span>
-            <span>Hava</span>
-            <span>Polen</span>
-            <span>Hidrolik</span>
+            {t.badges.map((label) => (
+              <span key={label}>{label}</span>
+            ))}
           </div>
         </div>
         <div className="footer-columns">
