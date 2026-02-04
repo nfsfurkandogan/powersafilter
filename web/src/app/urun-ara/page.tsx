@@ -588,23 +588,25 @@ export default function SearchPage() {
               ) : (
                 <>
                   <div className="result-table">
-                    <div className="result-head">
-                      <span>Ürün</span>
-                      <span>Stok Kodu</span>
-                      <span>Üretici</span>
-                      <span>Kategori</span>
-                      <span></span>
-                    </div>
                     <div className="result-body">
                       {visibleResults.map((item) => (
                         <div key={`${item._idx}-${item.stokKodu}`} className="result-row">
-                          <div>
+                          <div className="result-col">
+                            <span className="result-label">Ürün</span>
                             <div className="result-name">{item.stokIsmi || "Ürün"}</div>
                             <div className="result-sub">Grup: {item.grupIsmi || "-"}</div>
                           </div>
-                          <div>{item.stokKodu || "-"}</div>
-                          <div>{item.ureticiKodu || "-"}</div>
-                          <div className="result-tags">
+                          <div className="result-col">
+                            <span className="result-label">Stok Kodu</span>
+                            <div className="result-value">{item.stokKodu || "-"}</div>
+                          </div>
+                          <div className="result-col">
+                            <span className="result-label">Üretici</span>
+                            <div className="result-value">{item.ureticiKodu || "-"}</div>
+                          </div>
+                          <div className="result-col">
+                            <span className="result-label">Kategori</span>
+                            <div className="result-tags">
                             {item.kod1 ? (
                               <span className="pill">{formatLabel(item.kod1)}</span>
                             ) : null}
@@ -615,7 +617,9 @@ export default function SearchPage() {
                               <span className="pill">{formatLabel(item.kod4)}</span>
                             ) : null}
                           </div>
-                          <div className="result-actions">
+                          </div>
+                          <div className="result-col result-actions">
+                            <span className="result-label">İşlem</span>
                             <button type="button" onClick={() => handleCopy(item.stokKodu)}>
                               Stok Kodu Kopyala
                             </button>

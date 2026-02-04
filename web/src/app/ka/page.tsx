@@ -118,54 +118,11 @@ export default function HomeKa() {
               </p>
             </div>
             <div className="home-search-panel">
-              <div className="home-search-field">
-                <label htmlFor="home-search-input-ka">პროდუქტი / საწყობი / მწარმოებელი</label>
-                <input
-                  id="home-search-input-ka"
-                  type="text"
-                  placeholder="მაგ: WK735, P502478, საწვავის ფილტრი..."
-                />
-              </div>
               <div className="home-search-actions">
                 <a className="btn btn-primary" href="/urun-ara">
-                  კატალოგის ძიება
-                </a>
-                <a className="btn btn-ghost" href="/urun-ara">
-                  დეტალური ფილტრი
+                  კატალოგის ძიების გვერდი
                 </a>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="catalog" className="section catalog-highlight">
-        <div className="container highlight-inner">
-          <div className="highlight-copy">
-            <span className="eyebrow">კატალოგის ძიების ცენტრი</span>
-            <h2>პროდუქტის ძიება ყველაზე მნიშვნელოვანი ადგილია.</h2>
-            <p>დიზაინებულია სწრაფი, მკაფიო და პროფესიონალური შედეგებისთვის.</p>
-            <div className="hero-actions">
-              <a className="btn btn-primary" href="/urun-ara">
-                კატალოგის ძიების გვერდი
-              </a>
-              <a className="btn btn-ghost" href="/hizmetler">
-                ჩვენი სერვისები
-              </a>
-            </div>
-          </div>
-          <div className="highlight-card">
-            <div>
-              <strong>ჭკვიანი დამთხვევა</strong>
-              <p>სწრაფი შედეგები საწყობი კოდით, მწარმოებლის კოდით და სახელით.</p>
-            </div>
-            <div>
-              <strong>კატეგორიის ფილტრები</strong>
-              <p>მკაფიო არჩევანი ზეთის, ჰაერის, საწვავის, კაბინის და ჰიდრავლიკის ფილტრებისთვის.</p>
-            </div>
-            <div>
-              <strong>პროფესიონალური ინტერფეისი</strong>
-              <p>კორპორატიული ვიზუალი, სწრაფი პროცესი, საიმედო ინფორმაცია.</p>
             </div>
           </div>
         </div>

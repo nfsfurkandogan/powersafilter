@@ -4,14 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function WelcomeModal() {
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const dismissed = window.localStorage.getItem("powersa_welcome_dismissed");
-    if (dismissed === "1") return;
-    const timer = window.setTimeout(() => setOpen(true), 120);
-    return () => window.clearTimeout(timer);
-  }, []);
+  const [open, setOpen] = useState(true);
 
   useEffect(() => {
     if (!open) return;
@@ -25,7 +18,6 @@ export default function WelcomeModal() {
   if (!open) return null;
 
   const dismiss = () => {
-    window.localStorage.setItem("powersa_welcome_dismissed", "1");
     setOpen(false);
   };
 
@@ -50,7 +42,7 @@ export default function WelcomeModal() {
           />
           <div className="welcome-copy">
             <span className="eyebrow">Powersa Filter</span>
-            <h2 id="welcome-title">Sitemize hoş geldiniz!</h2>
+            <h2 id="welcome-title">Sitemize hoşgeldiniz!</h2>
             <p>
               Maskotumuz size eşlik ediyor. Katalog arama ile doğru filtreyi saniyeler
               içinde bulun.

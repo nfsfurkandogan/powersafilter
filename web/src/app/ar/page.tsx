@@ -118,54 +118,11 @@ export default function HomeAr() {
               </p>
             </div>
             <div className="home-search-panel">
-              <div className="home-search-field">
-                <label htmlFor="home-search-input-ar">المنتج / المخزون / المُصنِّع</label>
-                <input
-                  id="home-search-input-ar"
-                  type="text"
-                  placeholder="مثال: WK735، P502478، فلتر وقود..."
-                />
-              </div>
               <div className="home-search-actions">
                 <a className="btn btn-primary" href="/urun-ara">
-                  بحث الكتالوج
-                </a>
-                <a className="btn btn-ghost" href="/urun-ara">
-                  تصفية متقدمة
+                  الانتقال إلى بحث الكتالوج
                 </a>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="catalog" className="section catalog-highlight">
-        <div className="container highlight-inner">
-          <div className="highlight-copy">
-            <span className="eyebrow">مركز بحث الكتالوج</span>
-            <h2>البحث عن المنتج هو المنطقة الأهم.</h2>
-            <p>مصمم لنتائج سريعة وواضحة واحترافية.</p>
-            <div className="hero-actions">
-              <a className="btn btn-primary" href="/urun-ara">
-                صفحة بحث الكتالوج
-              </a>
-              <a className="btn btn-ghost" href="/hizmetler">
-                خدماتنا
-              </a>
-            </div>
-          </div>
-          <div className="highlight-card">
-            <div>
-              <strong>مطابقة ذكية</strong>
-              <p>نتائج سريعة عبر كود المخزون ورمز المُصنِّع والاسم.</p>
-            </div>
-            <div>
-              <strong>فلاتر الفئات</strong>
-              <p>اختيار واضح لفلاتر الزيت والهواء والوقود والمقصورة والهيدروليك.</p>
-            </div>
-            <div>
-              <strong>واجهة احترافية</strong>
-              <p>مظهر مؤسسي، سير عمل سريع، ومعلومات موثوقة.</p>
             </div>
           </div>
         </div>

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans } from "next/font/google";
+import Image from "next/image";
 import "./globals.css";
 import PowerAssistant from "@/components/PowerAssistant";
 import SiteHeader from "@/components/SiteHeader";
+import PerformancePatch from "@/components/PerformancePatch";
 
 const plexSans = IBM_Plex_Sans({
   variable: "--font-sans",
@@ -33,6 +35,7 @@ export default function RootLayout({
         className={`${plexSans.variable} ${plexSansHeading.variable} antialiased`}
       >
         <div className="page">
+          <PerformancePatch />
           <SiteHeader />
 
           <main>{children}</main>

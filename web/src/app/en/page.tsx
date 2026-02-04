@@ -118,54 +118,11 @@ export default function HomeEn() {
               </p>
             </div>
             <div className="home-search-panel">
-              <div className="home-search-field">
-                <label htmlFor="home-search-input-en">Product / Stock / Manufacturer</label>
-                <input
-                  id="home-search-input-en"
-                  type="text"
-                  placeholder="e.g., WK735, P502478, Fuel Filter..."
-                />
-              </div>
               <div className="home-search-actions">
                 <a className="btn btn-primary" href="/urun-ara">
-                  Catalog Search
-                </a>
-                <a className="btn btn-ghost" href="/urun-ara">
-                  Detailed Filter
+                  Go to Catalog Search
                 </a>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="catalog" className="section catalog-highlight">
-        <div className="container highlight-inner">
-          <div className="highlight-copy">
-            <span className="eyebrow">Catalog Search Center</span>
-            <h2>Product search is the key area.</h2>
-            <p>Designed for fast, clear, and professional results.</p>
-            <div className="hero-actions">
-              <a className="btn btn-primary" href="/urun-ara">
-                Catalog Search Page
-              </a>
-              <a className="btn btn-ghost" href="/hizmetler">
-                Our Services
-              </a>
-            </div>
-          </div>
-          <div className="highlight-card">
-            <div>
-              <strong>Smart Matching</strong>
-              <p>Fast results by stock code, manufacturer code, and name.</p>
-            </div>
-            <div>
-              <strong>Category Filters</strong>
-              <p>Clear selection for oil, air, fuel, cabin, and hydraulic filters.</p>
-            </div>
-            <div>
-              <strong>Professional Interface</strong>
-              <p>Corporate look, fast workflow, reliable information stream.</p>
             </div>
           </div>
         </div>

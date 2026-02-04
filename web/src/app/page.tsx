@@ -119,54 +119,11 @@ export default function Home() {
               </p>
             </div>
             <div className="home-search-panel">
-              <div className="home-search-field">
-                <label htmlFor="home-search-input">Ürün / Stok / Üretici</label>
-                <input
-                  id="home-search-input"
-                  type="text"
-                  placeholder="Örn: WK735, P502478, Yakıt Filtresi..."
-                />
-              </div>
               <div className="home-search-actions">
                 <a className="btn btn-primary" href="/urun-ara">
-                  Katalog Arama
-                </a>
-                <a className="btn btn-ghost" href="/urun-ara">
-                  Detaylı Filtre
+                  Katalog Arama Sayfasına Git
                 </a>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="catalog" className="section catalog-highlight">
-        <div className="container highlight-inner">
-          <div className="highlight-copy">
-            <span className="eyebrow">Katalog Arama Merkezi</span>
-            <h2>Ürün arama en önemli alan.</h2>
-            <p>Hızlı, net ve profesyonel sonuç akışı için tasarlandı.</p>
-            <div className="hero-actions">
-              <a className="btn btn-primary" href="/urun-ara">
-                Katalog Arama Sayfası
-              </a>
-              <a className="btn btn-ghost" href="/hizmetler">
-                Hizmetlerimiz
-              </a>
-            </div>
-          </div>
-          <div className="highlight-card">
-            <div>
-              <strong>Akıllı Eşleştirme</strong>
-              <p>Stok kodu, üretici kodu ve isim bazlı hızlı sonuçlar.</p>
-            </div>
-            <div>
-              <strong>Kategori Filtreleri</strong>
-              <p>Yağ, hava, yakıt, polen ve hidrolik filtreleri için net kategori seçimi.</p>
-            </div>
-            <div>
-              <strong>Profesyonel Arayüz</strong>
-              <p>Kurumsal görünüm, hızlı işlem ve güvenilir bilgi akışı.</p>
             </div>
           </div>
         </div>

@@ -173,7 +173,7 @@ export default function PowerAssistant() {
     window.setTimeout(() => {
       setMessages((prev) => [...prev, ...responses]);
       setIsTyping(false);
-    }, 350);
+    }, 900);
   };
 
   const runSearch = async (raw: string) => {
@@ -322,6 +322,20 @@ export default function PowerAssistant() {
 
   return (
     <div className="power-assistant">
+      <a
+        className="assistant-whatsapp"
+        href="https://wa.me/905492525001"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="WhatsApp ile iletişim"
+      >
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path
+            d="M16 3C9.4 3 4 8.3 4 14.7c0 2.4.8 4.7 2.2 6.6L5 29l7.9-1.9c2.1 1.1 4.5 1.7 7.1 1.7 6.6 0 12-5.2 12-11.6S22.6 3 16 3zm0 21.3c-2.2 0-4.2-.6-5.9-1.7l-.4-.3-4.7 1.2 1.3-4.4-.3-.4c-1.2-1.6-1.8-3.5-1.8-5.5 0-5 4.4-9.1 9.8-9.1s9.8 4.1 9.8 9.1-4.4 9.1-9.8 9.1zm5.5-6.7c-.3-.1-1.8-.9-2.1-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.4.2-.7.1-.3-.1-1.2-.4-2.3-1.3-.8-.6-1.3-1.4-1.5-1.7-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.1-.3.2-.4.1-.2 0-.3 0-.5s-.7-1.6-1-2.2c-.3-.6-.6-.5-.8-.5h-.6c-.2 0-.5.1-.7.3-.2.2-.9.8-.9 1.9s.9 2.3 1 2.5c.1.2 1.9 3.1 4.7 4.2.6.3 1.1.4 1.5.5.6.2 1.1.1 1.5.1.5-.1 1.8-.7 2.1-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"
+            fill="currentColor"
+          />
+        </svg>
+      </a>
       <button
         className="assistant-toggle"
         type="button"
@@ -415,19 +429,11 @@ export default function PowerAssistant() {
                   <Image
                     src="/mascot.png"
                     alt="Powersa maskotu"
-                    width={120}
-                    height={120}
-                    quality={80}
-                  />
-                  <Image
-                    src="/logo.png"
-                    alt="Powersa Filter"
-                    width={220}
-                    height={46}
-                    quality={80}
+                    width={160}
+                    height={160}
+                    quality={90}
                   />
                 </div>
-                <span>Maskot yazıyor</span>
                 <div className="assistant-typing-dots">
                   <span />
                   <span />
