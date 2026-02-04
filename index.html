@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Powersa Filter | Ürün Arama</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+        <div class="container header-inner">
+          <div class="brand">
+            <img class="brand-logo" src="assets/logo.png" alt="Powersa Filter" />
+            <div class="brand-text">
+              <span>Powersa Filter</span>
+              <small>Premium filtre çözümleri</small>
+            </div>
+          </div>
+          <nav class="nav">
+            <a href="#search">Ürün Ara</a>
+            <a href="#services">Hizmetler</a>
+            <a href="quality.html">Kalite</a>
+            <a href="#catalog">Katalog</a>
+            <a href="#branches">Şubeler</a>
+            <a href="#contact">İletişim</a>
+          </nav>
+          <a class="btn btn-primary small" href="#search">Hemen Ara</a>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="container hero-inner">
+            <div class="hero-copy">
+              <span class="eyebrow">Powersa Filter</span>
+              <h1>Endüstriyel ve otomotiv filtrelerinde doğru ürün, hızlı seçim.</h1>
+              <p>
+                Ürün arama motoru ile stok kodu, üretici kodu veya kategori bazlı filtreleme yapın.
+                Hızlı, net ve profesyonel bir deneyimle doğru filtreyi saniyeler içinde bulun.
+              </p>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#search">Aramaya Başla</a>
+                <a class="btn btn-ghost" href="quality.html">Kaliteyi Gör</a>
+              </div>
+              <div class="hero-strip">
+                <span>Yağ</span>
+                <span>Yakıt</span>
+                <span>Hava</span>
+                <span>Polen</span>
+                <span>Hidrolik</span>
+              </div>
+            </div>
+            <div class="hero-art">
+              <div class="orb orb-main"></div>
+              <div class="orb orb-accent"></div>
+              <div class="ring"></div>
+              <div class="hero-card">
+                <div>
+                  <div class="hero-stat">18.377+</div>
+                  <div class="hero-label">Ürün Kaydı</div>
+                </div>
+                <div>
+                  <div class="hero-stat">4 Filtre</div>
+                  <div class="hero-label">Kategori Seviyesi</div>
+                </div>
+                <div>
+                  <div class="hero-stat">Hızlı</div>
+                  <div class="hero-label">Arama Deneyimi</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="search" class="section search-section">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <h2>Ürün Arama Motoru</h2>
+                <p>Arama kutusunu veya kategori filtrelerini kullanarak hızlıca doğru ürünü bulun.</p>
+              </div>
+              <div class="section-badge">Arama</div>
+            </div>
+
+            <div class="search-panel">
+              <div class="search-grid">
+                <div class="input-group wide">
+                  <label for="query">Ürün / Stok / Üretici / Grup</label>
+                  <input id="query" type="text" placeholder="Örn: WK735, P502478, Yakıt Filtresi..." />
+                </div>
+                <div class="input-group">
+                  <label for="filter-kod1">Kategori (Kod-1)</label>
+                  <select id="filter-kod1"></select>
+                </div>
+                <div class="input-group">
+                  <label for="filter-kod3">Alt Kategori (Kod-3)</label>
+                  <select id="filter-kod3"></select>
+                </div>
+                <div class="input-group">
+                  <label for="filter-kod4">Tip (Kod-4)</label>
+                  <select id="filter-kod4"></select>
+                </div>
+                <div class="input-group">
+                  <label for="filter-brand">Üretici</label>
+                  <select id="filter-brand"></select>
+                </div>
+              </div>
+              <div class="search-actions">
+                <div id="active-filters" class="active-filters"></div>
+                <button id="clear-btn" class="btn btn-ghost" type="button">Filtreleri Temizle</button>
+              </div>
+            </div>
+
+            <div class="quick-filters" id="quick-filters">
+              <span>Hızlı filtre:</span>
+              <button class="chip" type="button" data-kod3="Yağ">Yağ Filtresi</button>
+              <button class="chip" type="button" data-kod3="Hava">Hava Filtresi</button>
+              <button class="chip" type="button" data-kod3="Yakıt">Yakıt Filtresi</button>
+              <button class="chip" type="button" data-kod3="Polen">Polen Filtresi</button>
+              <button class="chip" type="button" data-kod3="Hidrolik">Hidrolik Filtresi</button>
+            </div>
+
+            <div class="result-toolbar">
+              <div id="result-count" class="result-count">0 ürün bulundu</div>
+              <div class="result-tags">
+                <span class="pill">Yağ</span>
+                <span class="pill">Yakıt</span>
+                <span class="pill">Hava</span>
+                <span class="pill">Polen</span>
+                <span class="pill">Hidrolik</span>
+              </div>
+            </div>
+
+            <div class="result-table">
+              <div class="result-head">
+                <span>Ürün</span>
+                <span>Stok Kodu</span>
+                <span>Üretici</span>
+                <span>Kategori</span>
+                <span></span>
+              </div>
+              <div id="results" class="result-body"></div>
+            </div>
+
+            <button id="load-more" class="load-more" type="button">Daha Fazla Göster</button>
+          </div>
+        </section>
+
+        <section id="services" class="section services-section">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <h2>Hizmetlerimiz</h2>
+                <p>Filtre ürün gruplarımızı buradan inceleyebilirsiniz.</p>
+              </div>
+              <div class="section-badge">Hizmetler</div>
+            </div>
+            <div class="service-grid">
+              <article>
+                <h3>Yağ Filtresi</h3>
+                <p>Motor koruması ve performans için yüksek filtrasyon.</p>
+              </article>
+              <article>
+                <h3>Hava Filtresi</h3>
+                <p>Temiz hava akışıyla verimli ve sağlıklı çalışma.</p>
+              </article>
+              <article>
+                <h3>Yakıt Filtresi</h3>
+                <p>Yakıt hattında maksimum temizlik ve güvenilirlik.</p>
+              </article>
+              <article>
+                <h3>Polen Filtresi</h3>
+                <p>Kabin içi hava kalitesi için etkili filtreleme.</p>
+              </article>
+              <article>
+                <h3>Hidrolik Filtresi</h3>
+                <p>Ağır hizmet koşullarında güçlü koruma ve dayanıklılık.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="catalog" class="section catalog-section">
+          <div class="container catalog-inner">
+            <div>
+              <h2>Katalog & Ürün Grupları</h2>
+              <p>
+                Ürün gruplarınızı burada vurgulayabilir, katalog talepleri için iletişim alanı
+                oluşturabiliriz. İsterseniz PDF veya online katalog bağlantısı ekleyebiliriz.
+              </p>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#contact">Katalog Talep Et</a>
+                <a class="btn btn-ghost" href="#search">Arama Motoru</a>
+              </div>
+            </div>
+            <div class="catalog-card">
+              <div class="catalog-title">Powersa Filter</div>
+              <p>Profesyonel filtre çözümleri için hızlı erişim.</p>
+              <div class="catalog-grid">
+                <span>Yağ</span>
+                <span>Yakıt</span>
+                <span>Hava</span>
+                <span>Polen</span>
+                <span>Hidrolik</span>
+                <span>Özel</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="branches" class="section branches-section">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <h2>Şubelerimiz</h2>
+                <p>Şube bilgilerini paylaşırsanız burada modern bir liste olarak sunacağız.</p>
+              </div>
+              <div class="section-badge">Şubeler</div>
+            </div>
+            <div class="branch-grid">
+              <article class="branch-card">
+                <h3>Gürcistan Batum</h3>
+                <p>Şube iletişim bilgilerini paylaşın, burada yayınlayalım.</p>
+                <div class="branch-meta">
+                  <span>Adres: —</span>
+                  <span>Telefon: —</span>
+                  <span>Saat: —</span>
+                </div>
+              </article>
+              <article class="branch-card">
+                <h3>Trabzon</h3>
+                <p>Şube iletişim bilgilerini paylaşın, burada yayınlayalım.</p>
+                <div class="branch-meta">
+                  <span>Adres: —</span>
+                  <span>Telefon: —</span>
+                  <span>Saat: —</span>
+                </div>
+              </article>
+              <article class="branch-card">
+                <h3>Samsun</h3>
+                <p>Şube iletişim bilgilerini paylaşın, burada yayınlayalım.</p>
+                <div class="branch-meta">
+                  <span>Adres: —</span>
+                  <span>Telefon: —</span>
+                  <span>Saat: —</span>
+                </div>
+              </article>
+              <article class="branch-card">
+                <h3>Merkez Erzurum</h3>
+                <p>Şube iletişim bilgilerini paylaşın, burada yayınlayalım.</p>
+                <div class="branch-meta">
+                  <span>Adres: —</span>
+                  <span>Telefon: —</span>
+                  <span>Saat: —</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer id="contact" class="site-footer">
+        <div class="container footer-inner">
+          <div>
+            <strong>Powersa Filter</strong><br />
+            Filtre çözümlerinde güvenilir tercih
+          </div>
+          <div class="footer-links">
+            <a href="#search">Ürün Arama</a>
+            <a href="#services">Hizmetler</a>
+            <a href="quality.html">Kalite</a>
+            <a href="#catalog">Katalog</a>
+            <a href="#branches">Şubeler</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="data/products.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
