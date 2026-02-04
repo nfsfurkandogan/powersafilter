@@ -33,25 +33,14 @@ export default function Home() {
           <div className="hero-banner-visual">
             <div className="hero-banner-frame" />
             <Image
-              className="hero-pack-primary"
-              src="/powersa-pack-1.png"
+              className="hero-pack-single"
+              src="/powersa-1.png"
               alt="Powersa ürün kutuları"
               width={1536}
               height={1024}
-              quality={95}
               priority
               sizes="(max-width: 1024px) 88vw, 640px"
             />
-            <Image
-              className="hero-pack-secondary"
-              src="/powersa-pack-2.png"
-              alt="Powersa ürün çeşitleri"
-              width={1378}
-              height={912}
-              quality={95}
-              sizes="(max-width: 1024px) 78vw, 520px"
-            />
-            <div className="hero-banner-badge">Original Filter</div>
           </div>
         </div>
       </section>

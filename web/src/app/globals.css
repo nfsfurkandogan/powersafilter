@@ -353,6 +353,17 @@ img {
   animation: floatReverse 9s ease-in-out infinite;
 }
 
+.hero-pack-single {
+  position: absolute;
+  width: min(78%, 640px);
+  height: auto;
+  left: 50%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 24px 42px rgba(9, 24, 15, 0.22));
+  z-index: 1;
+}
+
 .hero-banner-badge {
   position: absolute;
   bottom: 8%;
