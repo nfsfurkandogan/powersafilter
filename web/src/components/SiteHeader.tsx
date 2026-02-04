@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 const locales = ["tr", "en", "ka", "ar"] as const;
 
@@ -67,7 +68,26 @@ export default function SiteHeader() {
   const pathname = usePathname();
   const locale = getLocale(pathname || "/");
   const t = labels[locale];
-  const homeHref = locale === "tr" ? "/" : `/${locale}`;
+  const base = locale === "tr" ? "" : `/${locale}`;
+  const homeHref = base || "/";
+
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const isRtl = locale === "ar";
+    document.documentElement.dir = isRtl ? "rtl" : "ltr";
+    document.body.classList.toggle("rtl", isRtl);
+  }, [locale]);
+
+  const getPathWithoutLocale = (path: string) => {
+    const match = locales.find(
+      (loc) => path === `/${loc}` || path.startsWith(`/${loc}/`)
+    );
+    if (!match) return path;
+    const trimmed = path.replace(`/${match}`, "");
+    return trimmed === "" ? "/" : trimmed;
+  };
+
+  const buildLink = (path: string) => `${base}${path}`;
 
   return (
     <header className="site-header">
@@ -87,25 +107,25 @@ export default function SiteHeader() {
           <a className="nav-link" href={homeHref}>
             {t.home}
           </a>
-          <a className="nav-link highlight" href="/urun-ara">
+          <a className="nav-link highlight" href={buildLink("/urun-ara")}>
             {t.search}
           </a>
-          <a className="nav-link" href="/hakkimizda">
+          <a className="nav-link" href={buildLink("/hakkimizda")}>
             {t.about}
           </a>
-          <a className="nav-link" href="/hizmetler">
+          <a className="nav-link" href={buildLink("/hizmetler")}>
             {t.services}
           </a>
-          <a className="nav-link" href="/kalite">
+          <a className="nav-link" href={buildLink("/kalite")}>
             {t.quality}
           </a>
-          <a className="nav-link" href="/katalog">
+          <a className="nav-link" href={buildLink("/katalog")}>
             {t.catalog}
           </a>
-          <a className="nav-link" href="/subeler">
+          <a className="nav-link" href={buildLink("/subeler")}>
             {t.branches}
           </a>
-          <a className="nav-link" href="/iletisim">
+          <a className="nav-link" href={buildLink("/iletisim")}>
             {t.contact}
           </a>
           <div className="lang-switcher">
@@ -115,7 +135,8 @@ export default function SiteHeader() {
               value={locale}
               onChange={(event) => {
                 const next = event.target.value;
-                const target = next === "tr" ? "/" : `/${next}`;
+                const rest = getPathWithoutLocale(pathname || "/");
+                const target = next === "tr" ? rest : `/${next}${rest}`;
                 window.location.href = target;
               }}
             >
@@ -126,7 +147,7 @@ export default function SiteHeader() {
             </select>
           </div>
         </nav>
-        <a className="btn btn-primary small" href="/urun-ara">
+        <a className="btn btn-primary small" href={buildLink("/urun-ara")}>
           {t.cta}
         </a>
       </div>
